@@ -1,0 +1,7 @@
+# Dependency directories
+node_modules
+
+#files
+.eslintrc
+server.js
+.DS_Store

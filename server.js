@@ -10,7 +10,7 @@ http.createServer((request, response) => {
   const q = url.parse(addr, true);
   let filePath = '';
 
-  // looking if in the URL the is documentation so will take you to documentation page otherwise redirect to index page
+  // looking if in the URL there is documentation so will take you to documentation page otherwise redirect to index page
   if (q.pathname.includes('documentation')) {
     filePath = (`${__dirname}/documentation.html`);
   } else {
