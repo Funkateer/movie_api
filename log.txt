@@ -1,0 +1,18 @@
+URL: /
+Timestamp: Sat Mar 30 2019 18:43:10 GMT+0100 (Central European Standard Time)
+
+URL: /css/style.css
+Timestamp: Sat Mar 30 2019 18:43:10 GMT+0100 (Central European Standard Time)
+
+URL: /favicon.ico
+Timestamp: Sat Mar 30 2019 18:43:10 GMT+0100 (Central European Standard Time)
+
+URL: /
+Timestamp: Sat Mar 30 2019 18:44:04 GMT+0100 (Central European Standard Time)
+
+URL: /css/style.css
+Timestamp: Sat Mar 30 2019 18:44:04 GMT+0100 (Central European Standard Time)
+
+URL: /favicon.ico
+Timestamp: Sat Mar 30 2019 18:44:04 GMT+0100 (Central European Standard Time)
+

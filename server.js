@@ -35,4 +35,6 @@ http.createServer((request, response) => {
       console.log('Added to log.');
     }
   });
-}).listen(8080);
+}).listen(8080, () =>{
+  console.log('App listening on port 8080')
+});
