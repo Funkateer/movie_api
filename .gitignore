@@ -1,5 +1,4 @@
 node_modules/
-
-.eslintrc
 server.js
+.eslintrc
 .DS_Store
