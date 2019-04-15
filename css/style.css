@@ -12,7 +12,7 @@ body{
 header{
   background-image: url(../img/movie-night.jpeg);
   background-size: cover;
-  height: 250px;
+  height: 220px;
 }
 
 .container{
@@ -69,4 +69,18 @@ footer {
 .socialIcon{
 	height: 67px;
 	padding: 5px 15px 5px 15px;
+}
+
+
+@media all and (max-width: 720px) {
+  body{
+		font-size: 11pt;
+  }
+
+  tbody{
+		font-size: 10pt;
+  }
+  em{
+    font-size: 9pt;
+  }
 }
