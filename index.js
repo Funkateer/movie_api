@@ -273,13 +273,13 @@ app.post('/users', (req, res) => {
 });
 
 // Allow users to update their info (email, date of birth)
-app.put('/users/:id', (req, res) => {
+app.put('/users/:name/:email', (req, res) => {
   let user = usersList.find((user) => { return user.name === req.params.name });
 
   if (user) {
     user.email = req.params.email;
-    user.dateOfBirth = req.params.dateOfBirth;
-    res.status(201).send('User ' + req.params.name + ' changed email to ' + req.params.email + ' and date of birth to ' + req.params.dateOfBirth);
+    // user.dateOfBirth = req.params.dateOfBirth;
+    res.status(201).send('User ' + req.params.name + ' changed email to ' + req.params.email ); //+ ' and date of birth to ' + req.params.dateOfBirth);
   } else {
     res.status(404).send('User: ' + req.params.name + ' not found.')
   }
