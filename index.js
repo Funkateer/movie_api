@@ -42,7 +42,7 @@ let movieList =
     title: 'The Big Lebowski',
     year: 1998,
     Director: 'Joel Coen',
-    genre:'crime comedy',
+    genre:'comedy',
     Starrings:[
       'Jeff Bridges',
       'John Goodman',
@@ -99,7 +99,7 @@ let movieList =
     title: 'Porco Rosso',
     year: 1992,
     Director: 'Hayao Miyazaki',
-    genre:'Animated',
+    genre:'animation',
     Starrings:[
       'Shūichirō Moriyama',
       'Tokiko Kato',
@@ -111,7 +111,7 @@ let movieList =
     title: 'Il Marchese del Grillo',
     year: 1981,
     Director: 'Mario Monicelli',
-    genre:'fiction',
+    genre:'comedy',
     Starrings:[
       'Alberto Sordi',
       'Paolo Stoppa',
@@ -144,6 +144,17 @@ let movieList =
       'Charlotte Stewart',
       'Allen Joseph',
       'Jeanne Bates'
+    ]
+  },
+  {
+    title: 'Howl\'s Moving Castle',
+    year: 2004,
+    Director: 'Hayao Miyazaki',
+    genre:'animation',
+    Starrings:[
+      'Chieko Baisho',
+      'Takuya Kimura',
+      'Akihiro Miwa'
     ]
   }
 

@@ -128,6 +128,17 @@
       "Allen Joseph",
       "Jeanne Bates"
     ]
+  },
+  {
+    "title": "Howl's Moving Castle",
+    "year": 2004,
+    "Director": "Hayao Miyazaki",
+    "genre":"animated",
+    "Starrings":[
+      "Chieko Baisho",
+      "Takuya Kimura",
+      "Akihiro Miwa"
+    ]
   }
 
 ]
