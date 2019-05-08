@@ -115,31 +115,49 @@ app.post('/users', (req, res) => {
   });
 });
 
-// Allow users to update their info (email, date of birth)
-app.put('/users/:name/:email', (req, res) => {
-  let user = usersList.find((user) => { return user.name === req.params.name });
-
-  if (user) {
-    user.email = req.params.email;
-    // user.dateOfBirth = req.params.dateOfBirth;
-    res.status(201).send('User ' + req.params.name + ' changed email to ' + req.params.email ); //+ ' and date of birth to ' + req.params.dateOfBirth);
-  } else {
-    res.status(404).send('User: ' + req.params.name + ' not found.')
-  }
+// Allow users to update their info (Username, Password, Email and Birthday)
+app.put('/users/:Username', function (req, res) {
+  Users.update({
+      Username: req.params.Username
+  }, {
+    $set: {
+      Username: req.body.Username,
+      Password: req.body.Password,
+      Email: req.body.Email,
+      Birthday: req.body.Birthday
+    }
+  }, {
+    new: true
+  }, // This line makes sure that the updated document is returned
+  function (err, updatedUser) {
+    if (err) {
+      console.error(err);
+      res.status(500).send('Error: ' + err);
+    } else {
+      res.json(updatedUser)
+    }
+  })
 });
 
 // Allow users to add a movie to their list of favorites
-app.post('/users/:name/favorites', (req, res) => {
-  let newFavoriteMovie = req.body;
-
-  if (!newFavoriteMovie) {
-    const message = 'Missing movie name in request body';
-    res.status(400).send(message);
-  } else {
-    let user = usersList.find((user) => { return user.name === req.params.name });
-    user.favoriteMovies.push(newFavoriteMovie.movie);
-    res.status(201).send(user.favoriteMovies);
-  }
+app.post('/users/:Username/FavoriteMovies/:MovieID', function (req, res) {
+  Users.findOneAndUpdate({
+    Username: req.params.Username
+  }, {
+    $push: {
+      FavoriteMovies: req.params.MovieID
+    }
+  }, {
+    new: true
+  }, // This line makes sure that the updated document is returned
+  function (err, updatedUser) {
+    if (err) {
+      console.error(err);
+      res.status(500).send('Error: ' + err);
+    } else {
+      res.json(updatedUser)
+    }
+  })
 });
 
 // Allow users to remove a movie from their list of favorites
