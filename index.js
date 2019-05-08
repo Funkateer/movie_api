@@ -75,7 +75,14 @@ app.get('/directors/:director', (req, res) => {
 
 // For postman testing purposes, returns a list of all users
 app.get('/users', (req, res) => {
-  res.json(usersList);
+  Users.find()
+  .then(function (users) {
+    res.status(201).json(users)
+  })
+  .catch(function (err) {
+    console.error(err);
+    res.status(500).send('Error: ' + err);
+  })
 });
 
 // Allow new users to register
