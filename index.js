@@ -30,22 +30,33 @@ app.get('/movies', (req, res) => {
 // Returns data about a single movie by title to the user
 app.get('/movies/:title', (req, res) => {
   Movies.findOne({
-      Title: req.params.Title
-    })
-    .then(function (movie) {
-      res.json(movie)
-    })
-    .catch(function (err) {
-      console.error(err);
-      res.status(500).send('Error: ' + err);
-    });
+    Title: req.params.Title
+  })
+  .then(function (movie) {
+    res.json(movie)
+  })
+  .catch(function (err) {
+    console.error(err);
+    res.status(500).send('Error: ' + err);
+  });
 });
 
 // Returns data about a genre (description) by name/title (e.g., “Thriller”)
 app.get('/movies/genres/:genre', (req, res) => {
-  res.json(movieList.filter(movie => {
-    return movie.genre === req.params.genre;
-  }));
+  Movies.findOne({
+    Title: req.params.Title
+  })
+  .then(function (movie) {
+    if (movie) {
+      res.status(201).send('The genre of ' + movie.Title + ' is ' + movie.Genre);
+    } else {
+      res.status(404).send('Movie with the title ' + req.params.Title + ' was not found.');
+    }
+  })
+  .catch(function (err) {
+    console.error(err);
+    res.status(500).send('Error: ' + err);
+  });
 });
 
 // Returns data about a director bio
