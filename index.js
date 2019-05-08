@@ -161,18 +161,25 @@ app.post('/users/:Username/FavoriteMovies/:MovieID', function (req, res) {
 });
 
 // Allow users to remove a movie from their list of favorites
-app.delete('/users/:name/favorites', (req, res) => {
-  let removeFavoriteMovie = req.body;
-
-  if (!removeFavoriteMovie) {
-    const message = 'Missing movie name in request body';
-    res.status(400).send(message);
-  } else {
-    let user = usersList.find((user) => { return user.name === req.params.name });
-    let newFavoriteMovies = user.favoriteMovies.filter(obj => {return obj !== removeFavoriteMovie.movie;});
-    user.favoriteMovies = newFavoriteMovies;
-    res.status(201).send(newFavoriteMovies);
-  }
+app.delete('/users/:Username/FavoriteMovies/:MovieID', function (req, res) {
+  Users.findOneAndRemove({
+    Username: req.params.Username
+    }, {
+    $pull: {
+      FavoriteMovies: req.params.MovieID
+    }
+    }, {
+      new: true
+    }, // This line makes sure that the updated document is returned
+    function (err, updatedUser) {
+      if (err) {
+        console.error(err);
+        res.status(500).send('Error: ' + err);
+      } else {
+        res.json(updatedUser)
+      }
+    }
+  )
 });
 
 // Allow users to delete profile
