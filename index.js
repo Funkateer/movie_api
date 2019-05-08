@@ -116,7 +116,7 @@ app.post('/users', (req, res) => {
 });
 
 // Allow users to update their info (Username, Password, Email and Birthday)
-app.put('/users/:Username', function (req, res) {
+app.put('/users/:Username', (req, res) => {
   Users.update({
       Username: req.params.Username
   }, {
@@ -140,7 +140,7 @@ app.put('/users/:Username', function (req, res) {
 });
 
 // Allow users to add a movie to their list of favorites
-app.post('/users/:Username/FavoriteMovies/:MovieID', function (req, res) {
+app.post('/users/:Username/FavoriteMovies/:MovieID', (req, res) => {
   Users.findOneAndUpdate({
     Username: req.params.Username
   }, {
@@ -161,7 +161,7 @@ app.post('/users/:Username/FavoriteMovies/:MovieID', function (req, res) {
 });
 
 // Allow users to remove a movie from their list of favorites
-app.delete('/users/:Username/FavoriteMovies/:MovieID', function (req, res) {
+app.delete('/users/:Username/FavoriteMovies/:MovieID',  (req, res) => {
   Users.findOneAndRemove({
     Username: req.params.Username
     }, {
@@ -184,18 +184,20 @@ app.delete('/users/:Username/FavoriteMovies/:MovieID', function (req, res) {
 
 // Allow users to delete profile
 app.delete('/users/:name', (req, res) => {
-  let user = usersList.find(user => {
-    return user.name === req.params.name;
+  Users.findOneAndRemove({
+    Username: req.params.Username
+  })
+  .then(function (user) {
+    if (!user) {
+      res.status(400).send(req.params.Username + ' was not found');
+    } else {
+      res.status(200).send(req.params.Username + ' was deleted.');
+    }
+  })
+  .catch(function (err) {
+    console.error(err);
+    res.status(500).send('Error: ' + err);
   });
-  if (!user) {
-    res.status(400).send('User not found.');
-  } else {
-    let newUserList = usersList.filter(obj => {
-        return obj !== user;
-    });
-    usersList = newUserList;
-    res.status(201).send(`User ${req.params.name} was deleted.`);
-  }
 });
 
 // Serves documentation file
