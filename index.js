@@ -41,7 +41,7 @@ app.get('/movies/:title', (req, res) => {
   });
 });
 
-// Returns data about a genre (description) by name/title (e.g., “Thriller”)
+// Returns data about a genre description by name/title (e.g., “Thriller”)
 app.get('/movies/genres/:genre', (req, res) => {
   Movies.findOne({
     Title: req.params.Title
@@ -61,9 +61,16 @@ app.get('/movies/genres/:genre', (req, res) => {
 
 // Returns data about a director bio
 app.get('/directors/:director', (req, res) => {
-  res.json(directorsList.find((obj) => {
-    return obj.name === req.params.director
-  }));
+  Movies.findOne({
+    'Director.Name': req.params.Name
+  })
+  .then(function (director) {
+    res.json(director)
+  })
+  .catch(function (err) {
+    console.error(err);
+    res.status(500).send('Error: ' + err);
+  });
 });
 
 // For postman testing purposes, returns a list of all users
