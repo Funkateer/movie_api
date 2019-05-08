@@ -87,16 +87,32 @@ app.get('/users', (req, res) => {
 
 // Allow new users to register
 app.post('/users', (req, res) => {
-  let newUser = req.body;
-
-  if (!newUser.name) {
-    const message = 'Missing name in request body';
-    res.status(400).send(message);
+  Users.findOne({
+    Username: req.body.Username
+  })
+  .then(function (user) {
+  if (user) {
+    return res.status(400).send(req.body.Username + ' already exists');
   } else {
-    newUser.id = uuid.v4();
-    usersList.push(newUser);
-    res.status(201).send(newUser);
+    Users
+    .create({
+      Username: req.body.Username,
+      Password: req.body.Password,
+      Email: req.body.Email,
+      Birthday: req.body.Birthday
+    })
+    .then(function (user) {
+      res.status(201).json(user)
+    })
+    .catch(function (error) {
+      console.error(error);
+      res.status(500).send('Error: ' + error);
+    })
   }
+  }).catch(function (error) {
+    console.error(error);
+    res.status(500).send('Error: ' + error);
+  });
 });
 
 // Allow users to update their info (email, date of birth)
