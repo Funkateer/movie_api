@@ -16,7 +16,7 @@ mongoose.connect('mongodb://localhost:27017/moviesDB', {useNewUrlParser: true});
 
 
 // Returns a list of ALL movies to the user
-app.get('/movies', (req, res) => {
+app.get('/movies', function (req, res) {
   Movies.find()
   .then(function (movies) {
     res.status(201).json(movies)
@@ -28,21 +28,21 @@ app.get('/movies', (req, res) => {
 });
 
 // Returns data about a single movie by title to the user
-app.get('/movies/:title', (req, res) => {
+app.get('/movies/:title', function (req, res) {
   Movies.findOne({
-    Title: req.params.Title
-  })
-  .then(function (movie) {
-    res.json(movie)
-  })
-  .catch(function (err) {
-    console.error(err);
-    res.status(500).send('Error: ' + err);
-  });
+      Title: req.params.Title
+    })
+    .then(function (movie) {
+      res.json(movie)
+    })
+    .catch(function (err) {
+      console.error(err);
+      res.status(500).send('Error: ' + err);
+    });
 });
 
 // Returns data about a genre description by name/title (e.g., “Thriller”)
-app.get('/movies/genres/:genre', (req, res) => {
+app.get('/movies/:Title/Genre', function (req, res) {
   Movies.findOne({
     Title: req.params.Title
   })
@@ -60,7 +60,7 @@ app.get('/movies/genres/:genre', (req, res) => {
 });
 
 // Returns data about a director bio
-app.get('/directors/:director', (req, res) => {
+app.get('/directors/:Name', function (req, res) {
   Movies.findOne({
     'Director.Name': req.params.Name
   })
@@ -74,7 +74,7 @@ app.get('/directors/:director', (req, res) => {
 });
 
 // For postman testing purposes, returns a list of all users
-app.get('/users', (req, res) => {
+app.get('/users', function (req, res) {
   Users.find()
   .then(function (users) {
     res.status(201).json(users)
@@ -86,7 +86,7 @@ app.get('/users', (req, res) => {
 });
 
 // Allow new users to register
-app.post('/users', (req, res) => {
+app.post('/users', function (req, res) {
   Users.findOne({
     Username: req.body.Username
   })
@@ -116,7 +116,7 @@ app.post('/users', (req, res) => {
 });
 
 // Allow users to update their info (Username, Password, Email and Birthday)
-app.put('/users/:Username', (req, res) => {
+app.put('/users/:Username', function (req, res) {
   Users.update({
       Username: req.params.Username
   }, {
@@ -140,7 +140,7 @@ app.put('/users/:Username', (req, res) => {
 });
 
 // Allow users to add a movie to their list of favorites
-app.post('/users/:Username/FavoriteMovies/:MovieID', (req, res) => {
+app.post('/users/:Username/FavoriteMovies/:MovieID', function (req, res)  {
   Users.findOneAndUpdate({
     Username: req.params.Username
   }, {
@@ -161,7 +161,7 @@ app.post('/users/:Username/FavoriteMovies/:MovieID', (req, res) => {
 });
 
 // Allow users to remove a movie from their list of favorites
-app.delete('/users/:Username/FavoriteMovies/:MovieID',  (req, res) => {
+app.delete('/users/:Username/FavoriteMovies/:MovieID',  function (req, res) {
   Users.findOneAndRemove({
     Username: req.params.Username
     }, {
@@ -183,8 +183,8 @@ app.delete('/users/:Username/FavoriteMovies/:MovieID',  (req, res) => {
 });
 
 // Allow users to delete profile
-app.delete('/users/:name', (req, res) => {
-  Users.findOneAndRemove({
+app.delete('/users/:Username', function (req, res) {
+  Users.findOneAndDelete({
     Username: req.params.Username
   })
   .then(function (user) {

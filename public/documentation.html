@@ -33,27 +33,27 @@
 
     <table>
       <tr>
-        <th>End point</th>
+        <th>End point request</th>
         <th>HTTP method</th>
         <th>Description</th>
       </tr>
       <tr>
         <td>/movies </td>
         <td>GET</td>
-        <td>Returns a list of All movies</td>
+        <td>Returns a list of All movies in the API</td>
       </tr>
       <tr>
-        <td>/movies/:title</td>
+        <td>/movies/:Title</td>
         <td>GET</td>
         <td>Returns data about a single movie</td>
       </tr>
       <tr>
-        <td>/movies/genres/:genre</td>
+        <td>/movies/:Title/Genre</td>
         <td>GET</td>
         <td>Returns data about a genre</td>
       </tr>
       <tr>
-        <td>/directors/:director</td>
+        <td>/directors/:Name</td>
         <td>GET</td>
         <td>Returns data about a director</td>
       </tr>
@@ -68,26 +68,100 @@
         <td>Allows new users to be registered. <em>Expects a body with an object containing "name", "email", "dateOfBirth"(string), favoriteMovies(array of strings)</em></td>
       </tr>
       <tr>
-        <td>/users/:name/favorites</td>
+        <td>/users/:Username/FavoriteMovies/:MovieID</td>
         <td>POST</td>
         <td>Allows user to add favorite movies. <em>Expects a body with an object containing "movie" with 1 movie listed as string.</em></td>
       </tr>
       <tr>
-        <td>/users/:name/:email</td>
+        <td>/users/users/:Username</td>
         <td>PUT</td>
         <td>Allows users to update their info</td>
       </tr>
 
       <tr>
-        <td>/users/:name/favorites</td>
+        <td>/users/:Username/FavoriteMovies/:MovieID</td>
         <td>DELETE</td>
         <td>Allows users to remove a movie from their list of favorites</td>
       </tr>
       <tr>
-        <td>/users/:name</td>
+        <td>/users/:Username</td>
         <td>DELETE</td>
         <td>Allows a user to delete account</td>
       </tr>
+    </table>
+
+    <p>Data format expected from this API:</p>
+
+    <table>
+      <tr>
+        <th></th>
+        <th>Expected data format</th>
+        <th>Example</th>
+      </tr>
+       <tr>
+        <td>Movies information data format</td>
+        <td>
+          json object { <br>
+          "Title": "String", <br>
+          "Description": "String", <br>
+          "Release": "String", <br>
+          "Genre": { <br>
+          &nbsp &nbsp "Name": "String", <br>
+          &nbsp &nbsp "Bio":  "String" <br>
+          }, <br>
+          "Director": { <br>
+            &nbsp &nbsp"Name": "String", <br>
+            &nbsp &nbsp"Bio": "String", <br>
+            &nbsp &nbsp"Birth": "String", <br>
+          }, <br>
+          "Actors" :  ["Strings"], <br>
+          "ImagePath": "String", <br>
+          "Featured":  "Boolean" <br>
+          });
+        </td>
+        <td>
+        </td>
+      </tr>
+      <tr>
+        <td>User registration</td>
+        <td>
+          json object { <br>
+            "Username": "String", <br>
+            "Password": "String", <br>
+            "Email": "String", <br>
+            "Birthday": "Date", <br>
+            "FavoriteMovies": "array" <br>
+          }
+        </td>
+        <td>
+            { <br>
+              "Username": "full name", <br>
+              "Password": "Alphanumeric", <br>
+              "Email": "mail@here.com", <br>
+              "Birthday": "YYYY-MM-DD", <br>
+              "FavoriteMovies": "[movieID,movieID]" <br>
+            }
+        </td>
+      </tr>
+      <tr>
+          <td>User updateble information</td>
+          <td>
+            json object { <br>
+              "Username": "String", <br>
+              "Password": "String", <br>
+              "Email": "String", <br>
+              "Birthday": "Date", <br>
+            }
+          </td>
+          <td>
+              { <br>
+                "Username": "full name", <br>
+                "Password": "Alphanumeric", <br>
+                "Email": "mail@here.com", <br>
+                "Birthday": "YYYY-MM-DD", <br>
+              }
+          </td>
+        </tr>
     </table>
   </div> <!--container-->
 
