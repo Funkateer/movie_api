@@ -6,6 +6,7 @@ const Models     = require('./models.js');
 // importing mongoose schemas
 const Movies     = Models.Movie;
 const Users      = Models.User;
+
 const app        = express();
 
 app.use(bodyParser.json());
@@ -16,8 +17,14 @@ mongoose.connect('mongodb://localhost:27017/moviesDB', {useNewUrlParser: true});
 
 // Returns a list of ALL movies to the user
 app.get('/movies', (req, res) => {
-  res.json(movieList);
-  // res.sendFile('topMovies.JSON', { root : __dirname })
+ Movies.find()
+  .then(function (movies) {
+    res.status(201).json(movies)
+  })
+  .catch(function (err) {
+    console.error(err);
+    res.status(500).send('Error: ' + err);
+  });
 });
 
 // Returns data about a single movie by title to the user
