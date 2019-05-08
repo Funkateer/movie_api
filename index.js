@@ -17,7 +17,7 @@ mongoose.connect('mongodb://localhost:27017/moviesDB', {useNewUrlParser: true});
 
 // Returns a list of ALL movies to the user
 app.get('/movies', (req, res) => {
- Movies.find()
+  Movies.find()
   .then(function (movies) {
     res.status(201).json(movies)
   })
@@ -29,9 +29,16 @@ app.get('/movies', (req, res) => {
 
 // Returns data about a single movie by title to the user
 app.get('/movies/:title', (req, res) => {
-  res.json(movieList.find((movie) => {
-    return movie.title === req.params.title
-  }));
+  Movies.findOne({
+      Title: req.params.Title
+    })
+    .then(function (movie) {
+      res.json(movie)
+    })
+    .catch(function (err) {
+      console.error(err);
+      res.status(500).send('Error: ' + err);
+    });
 });
 
 // Returns data about a genre (description) by name/title (e.g., “Thriller”)
