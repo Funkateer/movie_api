@@ -9,7 +9,7 @@
 </head>
 <body>
 <header>
-<h1>Movies RESTful API</h1>
+<h1 class="title">Movies RESTful API</h1>
 </header>
 
   <div class="container">
@@ -22,7 +22,7 @@
     <ul>
       <li>Allow users to see which actors star in which movies</li>
       <li>Allow users to view information about different actors</li>
-      <li>Allow users to view more information about different movies. <em> (such as the release date and the movie rating)</em>
+      <li>Allow users to view more information about different movies. <em> (such as the release Date, Genre, Director bio among others)</em>
       </li>
       <li>Allow users to create a “Watch” list in addition to their “Favorite Movies” list</li>
     </ul>
@@ -65,7 +65,7 @@
       <tr>
         <td>/users</td>
         <td>POST</td>
-        <td>Allows new users to be registered. <em>Request body object must contain all fileds:  "name", "email", "dateOfBirth")</em></td>
+        <td>Allows new users to be registered. <em>(The request body object must contain all fileds:  "Name", "Email" and "Date of birth")</em></td>
       </tr>
       <tr>
         <td>/users/<span class="link">:Username</span>/FavoriteMovies/<span class="link">:MovieID</span></td>
@@ -106,20 +106,20 @@
             <span class="JSONkey">"Username"</span>:<span class="JSONvalue"> "String"</span>, <br>
             <span class="JSONkey">"Password"</span>:<span class="JSONvalue"> "String"</span>, <br>
             <span class="JSONkey">"Email"</span>:<span class="JSONvalue"> "String"</span>, <br>
-            <span class="JSONkey">"Birthday"</span>:<span class="JSONvalue"> Date</span>, <br>
-            <span class="JSONkey">"FavoriteMovies"</span>:<span class="JSONvalue"> array </span><br>
+            <span class="JSONkey">"Birthday"</span>:<span class="JSONvalue2"> Date</span>, <br>
+            <span class="JSONkey">"FavoriteMovies"</span>:<span class="JSONvalue2"> [array] </span><br>
           }
         </td>
         <td>
           <br>
             { <br>
               <span class="JSONkey">"FavoriteMovies"</span>: [<span class="JSONvalue"> "movieID,movieID"</span>] <br>
-              <span class="JSONkey">"_id"</span>: <span class="JSONvalue"> "5cd43d6a25"</span>, <br>
+              <span class="JSONkey">"_id"</span>: <span class="JSONvalue"> "5cd32f4933665c9926480ec0"</span>, <br>
               <span class="JSONkey">"Username"</span>:<span class="JSONvalue"> "full name"</span>, <br>
               <span class="JSONkey">"Password"</span>:<span class="JSONvalue"> "Alphanumeric"</span>, <br>
-              <span class="JSONkey">"Email"</span>:<span class="JSONvalue"> myEmail@somewhere.com"</span>, <br>
+              <span class="JSONkey">"Email"</span>:<span class="JSONvalue"> "myEmail@somewhere.com"</span>, <br>
               <span class="JSONkey">"Birthday"</span>:<span class="JSONvalue"> "YYYY-MM-DD"</span>, <br>
-              <span class="JSONkey">"__v"</span>:<span class="JSONvalue"> Number</span> <br>
+              <span class="JSONkey">"__v"</span>:<span class="JSONvalue2"> Number</span> <br>
             }
         </td>
       </tr>
@@ -131,15 +131,15 @@
               <span class="JSONkey">"Username"</span>:<span class="JSONvalue"> "String"</span>, <br>
               <span class="JSONkey">"Password"</span>:<span class="JSONvalue"> "String"</span>, <br>
               <span class="JSONkey">"Email"</span>:<span class="JSONvalue"> "String"</span>, <br>
-              <span class="JSONkey">"Birthday"</span>:<span class="JSONvalue"> "Date"</span>, <br>
+              <span class="JSONkey">"Birthday"</span>:<span class="JSONvalue2"> Date</span>, <br>
             }
           </td>
           <td>
             <br>
               { <br>
-                <span class="JSONkey">"n"</span>:<span class="JSONvalue"> Number</span>, <br>
-                <span class="JSONkey">"nModified"</span>:<span class="JSONvalue">  Number</span>, <br>
-                <span class="JSONkey">"ok"</span>:<span class="JSONvalue"> Number</span> <br>
+                <span class="JSONkey">"n"</span>:<span class="JSONvalue2"> Number</span>, <br>
+                <span class="JSONkey">"nModified"</span>:<span class="JSONvalue2">  Number</span>, <br>
+                <span class="JSONkey">"ok"</span>:<span class="JSONvalue2"> Number</span> <br>
               }
           </td>
         </tr>
@@ -160,12 +160,16 @@
             &nbsp &nbsp<span class="JSONkey">"Bio"</span>:<span class="JSONvalue"> "String"</span>, <br>
             &nbsp &nbsp<span class="JSONkey">"Birth"</span>:<span class="JSONvalue"> "String"</span>, <br>
           }, <br>
-          <span class="JSONkey">"Actors"</span>: [<span class="JSONvalue"> "Strings"</span>], <br>
+          <span class="JSONkey">"Actors"</span>: [<span class="JSONvalue"> "Strings array"</span>], <br>
           <span class="JSONkey">"ImagePath"</span>:<span class="JSONvalue"> "String"</span>, <br>
-          <span class="JSONkey">"Featured"</span>:<span class="JSONvalue"> Boolean</span> <br>
+          <span class="JSONkey">"Featured"</span>:<span class="JSONvalue2"> Boolean</span> <br>
           })
         </td>
         <td>
+          { <br>
+            <span class="JSONkey">"acknowledged"</span> : <span class="JSONvalue2">true</span>, <br>
+            <span class="JSONkey">"insertedId"</span> : <span class="JSONvalue">ObjectId("5cd32e7a45767ad8c92e4e38")</span> <br>
+          }
         </td>
       </tr>
     </table>

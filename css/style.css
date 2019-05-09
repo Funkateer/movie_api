@@ -6,7 +6,8 @@ body{
   margin: 0;
   background-color: rgba(238, 246, 248, 0.61);
   font-size: 17px;
-  font-family:Arial;
+  font-family: palatino;
+  line-height: 130%;
 }
 
 header{
@@ -19,10 +20,11 @@ header{
   margin: 0 1%
 }
 
-h1{
+.title{
+  font-family: "Arial Black", Gadget, sans-serif;
   margin-top: 0;
   font-size: 4.5rem;
-  color: white;
+  color: rgb(235, 248, 197);
   text-align: center;
   padding-top: 65px;
   text-shadow: 6px 3px 4px rgba(0,0,0,0.48);
@@ -49,6 +51,11 @@ em{
 .JSONvalue{
   color: #303F9F;
 }
+
+.JSONvalue2{
+  color: #00695C;
+}
+
 table {
   border-collapse: collapse;
   width: 100%;
