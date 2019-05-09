@@ -29,9 +29,9 @@
 
     <br>
 
-    <p>This API has the following endpoints:</p>
+    <h2>This API has the following endpoints:</h2>
 
-    <table>
+    <table class="endopointTable">
       <tr>
         <th>End point request</th>
         <th>HTTP method</th>
@@ -43,17 +43,17 @@
         <td>Returns a list of All movies in the API</td>
       </tr>
       <tr>
-        <td>/movies/:Title</td>
+        <td>/movies/<span class="link">:Title</span></td>
         <td>GET</td>
         <td>Returns data about a single movie</td>
       </tr>
       <tr>
-        <td>/movies/:Title/Genre</td>
+        <td>/movies/<span class="link">:Title</span>/Genre</td>
         <td>GET</td>
         <td>Returns data about a genre</td>
       </tr>
       <tr>
-        <td>/directors/:Name</td>
+        <td>/directors/<span class="link">:Name</span></td>
         <td>GET</td>
         <td>Returns data about a director</td>
       </tr>
@@ -65,103 +65,109 @@
       <tr>
         <td>/users</td>
         <td>POST</td>
-        <td>Allows new users to be registered. <em>Expects a body with an object containing "name", "email", "dateOfBirth"(string), favoriteMovies(array of strings)</em></td>
+        <td>Allows new users to be registered. <em>Request body object must contain all fileds:  "name", "email", "dateOfBirth")</em></td>
       </tr>
       <tr>
-        <td>/users/:Username/FavoriteMovies/:MovieID</td>
+        <td>/users/<span class="link">:Username</span>/FavoriteMovies/<span class="link">:MovieID</span></td>
         <td>POST</td>
-        <td>Allows user to add favorite movies. <em>Expects a body with an object containing "movie" with 1 movie listed as string.</em></td>
+        <td>Allows user to add favorite movies.</td>
       </tr>
       <tr>
-        <td>/users/users/:Username</td>
+        <td>/users/users/<span class="link">:Username</span></td>
         <td>PUT</td>
         <td>Allows users to update their info</td>
       </tr>
 
       <tr>
-        <td>/users/:Username/FavoriteMovies/:MovieID</td>
+        <td>/users/<span class="link">:Username</span>/FavoriteMovies/<span class="link">:MovieID</span></td>
         <td>DELETE</td>
         <td>Allows users to remove a movie from their list of favorites</td>
       </tr>
       <tr>
-        <td>/users/:Username</td>
+        <td>/users/<span class="link">:Username</span></td>
         <td>DELETE</td>
         <td>Allows a user to delete account</td>
       </tr>
     </table>
 
-    <p>Data format expected from this API:</p>
+    <h2>Data format expected from this API:</h2>
 
-    <table>
+    <table class="dataFormatTable">
       <tr>
         <th></th>
-        <th>Expected data format</th>
-        <th>Example</th>
-      </tr>
-       <tr>
-        <td>Movies information data format</td>
-        <td>
-          json object { <br>
-          "Title": "String", <br>
-          "Description": "String", <br>
-          "Release": "String", <br>
-          "Genre": { <br>
-          &nbsp &nbsp "Name": "String", <br>
-          &nbsp &nbsp "Bio":  "String" <br>
-          }, <br>
-          "Director": { <br>
-            &nbsp &nbsp"Name": "String", <br>
-            &nbsp &nbsp"Bio": "String", <br>
-            &nbsp &nbsp"Birth": "String", <br>
-          }, <br>
-          "Actors" :  ["Strings"], <br>
-          "ImagePath": "String", <br>
-          "Featured":  "Boolean" <br>
-          });
-        </td>
-        <td>
-        </td>
+        <th>Expected data format to send</th>
+        <th>Example of data format in response</th>
       </tr>
       <tr>
         <td>User registration</td>
         <td>
-          json object { <br>
-            "Username": "String", <br>
-            "Password": "String", <br>
-            "Email": "String", <br>
-            "Birthday": "Date", <br>
-            "FavoriteMovies": "array" <br>
+          JSON object <br>
+          { <br>
+            <span class="JSONkey">"Username"</span>:<span class="JSONvalue"> "String"</span>, <br>
+            <span class="JSONkey">"Password"</span>:<span class="JSONvalue"> "String"</span>, <br>
+            <span class="JSONkey">"Email"</span>:<span class="JSONvalue"> "String"</span>, <br>
+            <span class="JSONkey">"Birthday"</span>:<span class="JSONvalue"> Date</span>, <br>
+            <span class="JSONkey">"FavoriteMovies"</span>:<span class="JSONvalue"> array </span><br>
           }
         </td>
         <td>
+          <br>
             { <br>
-              "Username": "full name", <br>
-              "Password": "Alphanumeric", <br>
-              "Email": "mail@here.com", <br>
-              "Birthday": "YYYY-MM-DD", <br>
-              "FavoriteMovies": "[movieID,movieID]" <br>
+              <span class="JSONkey">"FavoriteMovies"</span>: [<span class="JSONvalue"> "movieID,movieID"</span>] <br>
+              <span class="JSONkey">"_id"</span>: <span class="JSONvalue"> "5cd43d6a25"</span>, <br>
+              <span class="JSONkey">"Username"</span>:<span class="JSONvalue"> "full name"</span>, <br>
+              <span class="JSONkey">"Password"</span>:<span class="JSONvalue"> "Alphanumeric"</span>, <br>
+              <span class="JSONkey">"Email"</span>:<span class="JSONvalue"> myEmail@somewhere.com"</span>, <br>
+              <span class="JSONkey">"Birthday"</span>:<span class="JSONvalue"> "YYYY-MM-DD"</span>, <br>
+              <span class="JSONkey">"__v"</span>:<span class="JSONvalue"> Number</span> <br>
             }
         </td>
       </tr>
       <tr>
           <td>User updateble information</td>
           <td>
-            json object { <br>
-              "Username": "String", <br>
-              "Password": "String", <br>
-              "Email": "String", <br>
-              "Birthday": "Date", <br>
+            JSON object <br>
+            { <br>
+              <span class="JSONkey">"Username"</span>:<span class="JSONvalue"> "String"</span>, <br>
+              <span class="JSONkey">"Password"</span>:<span class="JSONvalue"> "String"</span>, <br>
+              <span class="JSONkey">"Email"</span>:<span class="JSONvalue"> "String"</span>, <br>
+              <span class="JSONkey">"Birthday"</span>:<span class="JSONvalue"> "Date"</span>, <br>
             }
           </td>
           <td>
+            <br>
               { <br>
-                "Username": "full name", <br>
-                "Password": "Alphanumeric", <br>
-                "Email": "mail@here.com", <br>
-                "Birthday": "YYYY-MM-DD", <br>
+                <span class="JSONkey">"n"</span>:<span class="JSONvalue"> Number</span>, <br>
+                <span class="JSONkey">"nModified"</span>:<span class="JSONvalue">  Number</span>, <br>
+                <span class="JSONkey">"ok"</span>:<span class="JSONvalue"> Number</span> <br>
               }
           </td>
         </tr>
+          <tr>
+        <td>Movies information data format</td>
+        <td>
+          JSON object <br>
+          { <br>
+          <span class="JSONkey">"Title"</span>:<span class="JSONvalue"> "String"</span>, <br>
+          <span class="JSONkey">"Description"</span>:<span class="JSONvalue"> "String"</span>, <br>
+          <span class="JSONkey">"Release"</span>:<span class="JSONvalue">  "String</span>", <br>
+          <span class="JSONkey">"Genre"</span>: { <br>
+          &nbsp &nbsp <span class="JSONkey">"Name"</span>:<span class="JSONvalue"> "String"</span>, <br>
+          &nbsp &nbsp <span class="JSONkey">"Bio"</span>: <span class="JSONvalue"> "String"</span> <br>
+          }, <br>
+          <span class="JSONkey">"Director"</span>: { <br>
+            &nbsp &nbsp<span class="JSONkey">"Name"</span>:<span class="JSONvalue"> "String"</span>, <br>
+            &nbsp &nbsp<span class="JSONkey">"Bio"</span>:<span class="JSONvalue"> "String"</span>, <br>
+            &nbsp &nbsp<span class="JSONkey">"Birth"</span>:<span class="JSONvalue"> "String"</span>, <br>
+          }, <br>
+          <span class="JSONkey">"Actors"</span>: [<span class="JSONvalue"> "Strings"</span>], <br>
+          <span class="JSONkey">"ImagePath"</span>:<span class="JSONvalue"> "String"</span>, <br>
+          <span class="JSONkey">"Featured"</span>:<span class="JSONvalue"> Boolean</span> <br>
+          })
+        </td>
+        <td>
+        </td>
+      </tr>
     </table>
   </div> <!--container-->
 

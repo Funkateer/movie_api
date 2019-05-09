@@ -184,7 +184,7 @@ app.delete('/users/:Username/FavoriteMovies/:MovieID',  function (req, res) {
 
 // Allow users to delete profile
 app.delete('/users/:Username', function (req, res) {
-  Users.findOneAndDelete({
+  Users.findOneAndRemove({
     Username: req.params.Username
   })
   .then(function (user) {

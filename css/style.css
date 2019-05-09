@@ -21,10 +21,10 @@ header{
 
 h1{
   margin-top: 0;
-  font-size: 4rem;
+  font-size: 4.5rem;
   color: white;
   text-align: center;
-  padding:30px 10px;
+  padding-top: 65px;
   text-shadow: 6px 3px 4px rgba(0,0,0,0.48);
 }
 
@@ -38,10 +38,22 @@ em{
   font-weight: 100;
 }
 
+.link{
+  color: #8E24AA;
+}
+
+.JSONkey{
+  color: #D50000;
+}
+
+.JSONvalue{
+  color: #303F9F;
+}
 table {
   border-collapse: collapse;
   width: 100%;
   display: inline-block;
+  margin: 20px 20px;
 }
 
 td, th {
@@ -52,6 +64,10 @@ td, th {
 
 tr:nth-child(even) {
   background-color: #dddddde1;
+}
+
+.dataFormatTable{
+  line-height: 150%
 }
 
 footer {
@@ -75,6 +91,10 @@ footer {
 @media all and (max-width: 720px) {
   body{
 		font-size: 11pt;
+  }
+
+  h1{
+    font-size: 3em;
   }
 
   tbody{
