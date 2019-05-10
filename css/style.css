@@ -75,7 +75,8 @@ tr:nth-child(even) {
 }
 
 .dataFormatTable{
-  line-height: 150%
+  line-height: 160%;
+  padding: 12px;
 }
 
 footer {

@@ -14,7 +14,6 @@ app.use(bodyParser.json());
 //connect to mongoDB movies and users collections
 mongoose.connect('mongodb://localhost:27017/moviesDB', {useNewUrlParser: true});
 
-
 // Returns a list of ALL movies to the user
 app.get('/movies', function (req, res) {
   Movies.find()
