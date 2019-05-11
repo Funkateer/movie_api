@@ -7,9 +7,12 @@ const Models     = require('./models.js');
 const Movies     = Models.Movie;
 const Users      = Models.User;
 
+const passport = require('passport');
+
 const app        = express();
 
 app.use(bodyParser.json());
+var auth = require('./auth')(app);
 
 //connect to mongoDB movies and users collections
 mongoose.connect('mongodb://localhost:27017/moviesDB', {useNewUrlParser: true});
