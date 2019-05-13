@@ -161,7 +161,7 @@ app.put('/users/:Username',passport.authenticate('jwt', { session: false }), fun
   if (errors) {
     return res.status(422).json({ errors: errors });
   }
-  
+
   Users.update({
       Username: req.params.Username
   }, {
@@ -255,6 +255,12 @@ app.get('*', (req, res) => {
   res.sendFile('/public/documentation.html', { root: __dirname })
 });
 
-app.listen(8080, () => {
-  console.log('App listening on port 8080');
+// app.listen(8080, () => {
+//   console.log('App listening on port 8080');
+// });
+
+//environment variable port
+var port = process.env.PORT || 3000;
+app.listen(port, '0.0.0.0', () => {
+  console.log('Listening on Port 3000');
 });
