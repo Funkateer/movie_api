@@ -15,8 +15,9 @@ const Users  = Models.User;
 
 //encapsulate express functionality
 const app = express();
-app.use(cors());
 app.use(bodyParser.json());
+app.use(cors());
+app.use(validator());
 var auth = require('./auth')(app);
 
 //connect to mongoDB movies and users collections
@@ -107,6 +108,18 @@ app.get('/users', function (req, res) {
 
 // Allow new users to register
 app.post('/users', function (req, res) {
+  // Validation logic here for request
+  req.checkBody('Username', 'Username is required').notEmpty();
+  req.checkBody('Username', 'Username contains non alphanumeric characters - not allowed.').isAlphanumeric()
+  req.checkBody('Password', 'Password is required').notEmpty();
+  req.checkBody('Email', 'Email is required').notEmpty();
+  req.checkBody('Email', 'Email does not appear to be valid').isEmail();
+  // check the validation object for errors
+  var errors = req.validationErrors();
+  if (errors) {
+    return res.status(422).json({ errors: errors });
+  }
+
   var hashedPassword = Users.hashPassword(req.body.Password); // stores the hashed password
   Users.findOne({Username: req.body.Username})// Search to see if a user with the requested username already exists
   .then(function (user) {
@@ -137,6 +150,18 @@ app.post('/users', function (req, res) {
 
 // Allow users to update their info (Username, Password, Email and Birthday)
 app.put('/users/:Username',passport.authenticate('jwt', { session: false }), function (req, res) {
+  // Validation logic here for request
+  req.checkBody('Username', 'Username is required').notEmpty();
+  req.checkBody('Username', 'Username contains non alphanumeric characters - not allowed.').isAlphanumeric()
+  req.checkBody('Password', 'Password is required').notEmpty();
+  req.checkBody('Email', 'Email is required').notEmpty();
+  req.checkBody('Email', 'Email does not appear to be valid').isEmail();
+  // check the validation object for errors
+  var errors = req.validationErrors();
+  if (errors) {
+    return res.status(422).json({ errors: errors });
+  }
+  
   Users.update({
       Username: req.params.Username
   }, {
