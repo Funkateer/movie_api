@@ -5,6 +5,8 @@ const uuid       = require('uuid');
 const mongoose   = require('mongoose');
 const passport   = require('passport');
 const cors       = require('cors');
+const validator  = require('express-validator');
+
 
 // importing mongoose schemas
 const Models = require('./models.js');
