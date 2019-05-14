@@ -21,10 +21,10 @@ app.use(validator());
 var auth = require('./auth')(app);
 
 //connect to mongoDB movies and users collections LOCALLY
-mongoose.connect('mongodb://localhost:27017/moviesDB', {useNewUrlParser: true});
+// mongoose.connect('mongodb://localhost:27017/moviesDB', {useNewUrlParser: true});
 
 //connect to mongoDB movies and users collections on cloud mongo
-// mongoose.connect('mongodb+srv://Aladin:<PASSWORD>@cinetecadb-qp1uh.mongodb.net/cinetecaDB?retryWrites=true', {useNewUrlParser: true});
+mongoose.connect('mongodb+srv://Aladin:iz2v8TacgRoZYkjD@cinetecadb-qp1uh.mongodb.net/cinetecaDB?retryWrites=true', {useNewUrlParser: true});
 
 
 // In case of any CORS restrictins uncomment and add trusted origins
