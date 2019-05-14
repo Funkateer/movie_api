@@ -4,7 +4,7 @@
 
 body{
   margin: 0;
-  background-color: rgba(238, 246, 248, 0.61);
+  background-color: #EEF6F8;
   font-size: 19px;
   font-family: palatino;
   line-height: 140%;
@@ -36,8 +36,9 @@ h2{
 }
 
 em{
-  font-size: .9rem;
+  font-size: .8rem;
   font-weight: 100;
+  color: #616161
 }
 
 .link{
