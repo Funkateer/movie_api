@@ -20,12 +20,8 @@ app.use(cors());
 app.use(validator());
 var auth = require('./auth')(app);
 
-//connect to mongoDB movies and users collections LOCALLY
-// mongoose.connect('mongodb://localhost:27017/moviesDB', {useNewUrlParser: true});
-
-//connect to mongoDB movies and users collections on cloud mongo
-mongoose.connect('mongodb+srv://Aladin:iz2v8TacgRoZYkjD@cinetecadb-qp1uh.mongodb.net/cinetecaDB?retryWrites=true', {useNewUrlParser: true});
-
+//connect to mongo DB
+mongoose.connect(process.env.MONGO_DB, {useNewUrlParser: true});
 
 // In case of any CORS restrictins uncomment and add trusted origins
 // var allowedOrigins = ['http://localhost:8080', 'http://someTrustedURL.com'];
