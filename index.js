@@ -15,6 +15,7 @@ const Users  = Models.User;
 
 //encapsulate express functionality
 const app = express();
+app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.json());
 app.use(cors());
 app.use(validator());
