@@ -263,5 +263,5 @@ app.get('*', (req, res) => {
 //environment variable port
 var port = process.env.PORT || 3000;
 app.listen(port, '0.0.0.0', () => {
-  console.log('Listening on Port 3000');
+  console.log(`Listening on port ${port}`)
 });
