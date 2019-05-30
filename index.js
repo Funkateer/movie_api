@@ -25,7 +25,7 @@ var auth = require('./auth')(app);
 mongoose.connect(process.env.MONGO_DB, {useNewUrlParser: true});
 
 // In case of any CORS restrictins uncomment and add trusted origins
-// var allowedOrigins = ['http://localhost:8080', 'http://someTrustedURL.com'];
+// var allowedOrigins = ['http://localhost:8080', 'http://localhost:3000','http://someTrustedURL.com'];
 // app.use(cors({
 //   origin: function(origin, callback){
 //     if(!origin) return callback(null, true);
@@ -38,7 +38,7 @@ mongoose.connect(process.env.MONGO_DB, {useNewUrlParser: true});
 // }));
 
 // Returns a list of ALL movies to the user
-app.get('/movies',passport.authenticate('jwt', { session: false }), function (req, res) {
+app.get('/movies', function (req, res) {
   Movies.find()
   .then(function (movies) {
     res.status(201).json(movies)
