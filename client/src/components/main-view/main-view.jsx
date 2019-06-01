@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import { MovieCard } from '../movie-card/movie-card';
 
 // class MainView extends React.Component {
 //   constructor() {
