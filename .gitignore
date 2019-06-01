@@ -3,3 +3,4 @@ server.js
 .eslintrc
 .DS_Store
 .env
+.cache
