@@ -27603,7 +27603,21 @@ function (_React$Component) {
         className: "label"
       }, "Director"), _react.default.createElement("div", {
         className: "value"
-      }, movie.Director.Name)));
+      }, movie.Director.Name)), _react.default.createElement("button", {
+        onClick: function (_onClick) {
+          function onClick() {
+            return _onClick.apply(this, arguments);
+          }
+
+          onClick.toString = function () {
+            return _onClick.toString();
+          };
+
+          return onClick;
+        }(function () {
+          return onClick();
+        })
+      }, "Back to all movies"));
     }
   }]);
 
@@ -27633,15 +27647,15 @@ function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterat
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
@@ -27652,9 +27666,25 @@ var MainView =
 function (_React$Component) {
   _inherits(MainView, _React$Component);
 
+  // Call the superclass constructor
+  // so React can initialize it
+  function MainView() {
+    var _this;
+
+    _classCallCheck(this, MainView);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(MainView).call(this)); // Initialize the state to an empty object so we can destructure it later
+
+    _this.state = {
+      movies: null,
+      selectedMovie: null
+    };
+    return _this;
+  } // One of the "hooks" available in a React Component
+
+
   _createClass(MainView, [{
     key: "componentDidMount",
-    // One of the "hooks" available in a React Component
     value: function componentDidMount() {
       var _this2 = this;
 
@@ -27667,12 +27697,21 @@ function (_React$Component) {
       }).catch(function (error) {
         console.log(error);
       });
-    }
+    } //go to movie view
+
   }, {
     key: "onMovieClick",
     value: function onMovieClick(movie) {
       this.setState({
         selectedMovie: movie
+      });
+    } // returning back to main view
+
+  }, {
+    key: "getMainView",
+    value: function getMainView() {
+      this.setState({
+        selectedMovie: null
       });
     }
   }, {
@@ -27692,7 +27731,10 @@ function (_React$Component) {
       return _react.default.createElement("div", {
         className: "main-view"
       }, selectedMovie ? _react.default.createElement(_movieView.MovieView, {
-        movie: selectedMovie
+        movie: selectedMovie,
+        onClick: function onClick(button) {
+          return _this3.getMainView();
+        }
       }) : movies.map(function (movie) {
         return _react.default.createElement(_movieCard.MovieCard, {
           key: movie._id,
@@ -27702,24 +27744,8 @@ function (_React$Component) {
           }
         });
       }));
-    } // Call the superclass constructor
-    // so React can initialize it
-
+    }
   }]);
-
-  function MainView() {
-    var _this;
-
-    _classCallCheck(this, MainView);
-
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(MainView).call(this)); // Initialize the state to an empty object so we can destructure it later
-
-    _this.state = {
-      movies: null,
-      selectedMovie: null
-    };
-    return _this;
-  }
 
   return MainView;
 }(_react.default.Component);
@@ -27828,7 +27854,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
-// Main component (will eventually use all the others)
+// Main component
 var CinetecaApplication =
 /*#__PURE__*/
 function (_React$Component) {
@@ -27882,7 +27908,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51090" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51821" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

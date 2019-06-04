@@ -6,6 +6,18 @@ import { MovieView } from '../movie-view/movie-view';
 
 export class MainView extends React.Component {
 
+    // Call the superclass constructor
+  // so React can initialize it
+  constructor() {
+    super();
+
+    // Initialize the state to an empty object so we can destructure it later
+    this.state = {
+      movies: null,
+      selectedMovie: null
+    };
+  }
+
   // One of the "hooks" available in a React Component
   componentDidMount() {
     axios.get('<https://cineteca.herokuapp.com/movies>')
@@ -21,9 +33,17 @@ export class MainView extends React.Component {
       });
   }
 
+  //go to movie view
   onMovieClick(movie) {
     this.setState({
       selectedMovie: movie
+    });
+  }
+
+  // returning back to main view
+  getMainView(){
+    this.setState({
+      selectedMovie: null
     });
   }
 
@@ -38,25 +58,13 @@ export class MainView extends React.Component {
     return (
     <div className="main-view">
       {selectedMovie
-         ? <MovieView movie={selectedMovie}/>
+         ? <MovieView movie={selectedMovie} onClick={button => this.getMainView()}/>
          : movies.map(movie => (
            <MovieCard key={movie._id} movie={movie} onClick={movie => this.onMovieClick(movie)}/>
          ))
       }
      </div>
     );
-  }
-  
-  // Call the superclass constructor
-  // so React can initialize it
-  constructor() {
-    super();
-
-    // Initialize the state to an empty object so we can destructure it later
-    this.state = {
-      movies: null,
-      selectedMovie: null
-    };
   }
 
 }
