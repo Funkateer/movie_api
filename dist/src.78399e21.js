@@ -27572,7 +27572,9 @@ function (_React$Component) {
   _createClass(MovieView, [{
     key: "render",
     value: function render() {
-      var movie = this.props.movie;
+      var _this$props = this.props,
+          movie = _this$props.movie,
+          _onClick = _this$props.onClick;
       if (!movie) return null;
       return _react.default.createElement("div", {
         className: "movie-view"
@@ -27604,19 +27606,9 @@ function (_React$Component) {
       }, "Director"), _react.default.createElement("div", {
         className: "value"
       }, movie.Director.Name)), _react.default.createElement("button", {
-        onClick: function (_onClick) {
-          function onClick() {
-            return _onClick.apply(this, arguments);
-          }
-
-          onClick.toString = function () {
-            return _onClick.toString();
-          };
-
-          return onClick;
-        }(function () {
-          return onClick();
-        })
+        onClick: function onClick() {
+          return _onClick();
+        }
       }, "Back to all movies"));
     }
   }]);
@@ -27688,7 +27680,7 @@ function (_React$Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      _axios.default.get('<https://cineteca.herokuapp.com/movies>').then(function (response) {
+      _axios.default.get('https://cineteca.herokuapp.com/movies').then(function (response) {
         console.log(response); // Assign the result to the state
 
         _this2.setState({
@@ -27908,7 +27900,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51821" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55255" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
