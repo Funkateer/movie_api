@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
 
@@ -25,7 +26,10 @@ export class MainView extends React.Component {
       selectedMovie: movie
     });
   }
+
   render() {
+    // If the state isn't initialized, this will throw on runtime
+    // before the data is initially loaded
     const { movies, selectedMovie } = this.state;
 
     // Before the movies have been loaded
@@ -42,10 +46,13 @@ export class MainView extends React.Component {
      </div>
     );
   }
-
+  
+  // Call the superclass constructor
+  // so React can initialize it
   constructor() {
     super();
 
+    // Initialize the state to an empty object so we can destructure it later
     this.state = {
       movies: null,
       selectedMovie: null

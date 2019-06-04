@@ -27505,6 +27505,9 @@ function (_React$Component) {
   _createClass(MovieCard, [{
     key: "render",
     value: function render() {
+      // This is given to the <MovieCard/> component by the outer world
+      // which, in this case, is `MainView`, as `MainView` is what’s
+      // connected to your database via the movies endpoint of your API
       var _this$props = this.props,
           movie = _this$props.movie,
           _onClick = _this$props.onClick;
@@ -27677,6 +27680,8 @@ function (_React$Component) {
     value: function render() {
       var _this3 = this;
 
+      // If the state isn't initialized, this will throw on runtime
+      // before the data is initially loaded
       var _this$state = this.state,
           movies = _this$state.movies,
           selectedMovie = _this$state.selectedMovie; // Before the movies have been loaded
@@ -27697,7 +27702,9 @@ function (_React$Component) {
           }
         });
       }));
-    }
+    } // Call the superclass constructor
+    // so React can initialize it
+
   }]);
 
   function MainView() {
@@ -27705,7 +27712,8 @@ function (_React$Component) {
 
     _classCallCheck(this, MainView);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(MainView).call(this));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(MainView).call(this)); // Initialize the state to an empty object so we can destructure it later
+
     _this.state = {
       movies: null,
       selectedMovie: null
@@ -27821,31 +27829,31 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
 // Main component (will eventually use all the others)
-var MyFlixApplication =
+var CinetecaApplication =
 /*#__PURE__*/
 function (_React$Component) {
-  _inherits(MyFlixApplication, _React$Component);
+  _inherits(CinetecaApplication, _React$Component);
 
-  function MyFlixApplication() {
-    _classCallCheck(this, MyFlixApplication);
+  function CinetecaApplication() {
+    _classCallCheck(this, CinetecaApplication);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(MyFlixApplication).apply(this, arguments));
+    return _possibleConstructorReturn(this, _getPrototypeOf(CinetecaApplication).apply(this, arguments));
   }
 
-  _createClass(MyFlixApplication, [{
+  _createClass(CinetecaApplication, [{
     key: "render",
     value: function render() {
       return _react.default.createElement(_mainView.MainView, null);
     }
   }]);
 
-  return MyFlixApplication;
+  return CinetecaApplication;
 }(_react.default.Component); // Finds the root of your app
 
 
 var container = document.getElementsByClassName('app-container')[0]; // Tells React to render your app in the root DOM element
 
-_reactDom.default.render(_react.default.createElement(MyFlixApplication), container);
+_reactDom.default.render(_react.default.createElement(CinetecaApplication), container);
 },{"react":"../../node_modules/react/index.js","react-dom":"../../node_modules/react-dom/index.js","./components/main-view/main-view":"components/main-view/main-view.jsx","./index.scss":"index.scss"}],"../../../../../../../usr/local/lib/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -27874,7 +27882,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49530" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51090" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
