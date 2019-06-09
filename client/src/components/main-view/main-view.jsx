@@ -6,7 +6,7 @@ import { MovieView } from '../movie-view/movie-view';
 
 export class MainView extends React.Component {
 
-    // Call the superclass constructor
+  // Call the superclass constructor
   // so React can initialize it
   constructor() {
     super();
@@ -58,10 +58,10 @@ export class MainView extends React.Component {
     return (
     <div className="main-view">
       {selectedMovie
-         ? <MovieView movie={selectedMovie} onClick={button => this.getMainView()}/>
-         : movies.map(movie => (
-           <MovieCard key={movie._id} movie={movie} onClick={movie => this.onMovieClick(movie)}/>
-         ))
+        ? <MovieView movie={selectedMovie} onClick={button => this.getMainView()}/>
+        : movies.map(movie => (
+          <MovieCard key={movie._id} movie={movie} onClick={movie => this.onMovieClick(movie)}/>
+        ))
       }
      </div>
     );

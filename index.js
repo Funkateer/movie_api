@@ -165,7 +165,7 @@ app.put('/users/:Username',passport.authenticate('jwt', { session: false }), fun
 
   Users.update({
       Username: req.params.Username
-  }, {
+    }, {
     $set: {
       Username: req.body.Username,
       Password: req.body.Password,
