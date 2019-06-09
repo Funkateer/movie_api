@@ -6,7 +6,7 @@ export function LoginView(props) {
 
   const handleSubmit = (e) => {
 
-    // the two line belo are temporay the first prevents the default auth logic to take place (when clicking on submit button),
+    // the two line below are temporay the first prevents the default auth logic to take place (when clicking on submit button),
     // the second allowas users to log-in even with made up credential it's for testing I'll implement auth in the near future
     e.preventDefault();
     props.onLoggedIn(username);
