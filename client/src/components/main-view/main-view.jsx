@@ -14,8 +14,8 @@ export class MainView extends React.Component {
 
   // Call the superclass constructor
   // so React can initialize it
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     // Initialize the state to an empty object so we can destructure it later
     this.state = {
@@ -28,16 +28,16 @@ export class MainView extends React.Component {
   // One of the "hooks" available in a React Component
   componentDidMount() {
     axios.get('https://cineteca.herokuapp.com/movies')
-      .then(response => {
-        console.log(response);
-        // Assign the result to the state
-        this.setState({
-          movies: response.data
-        });
-      })
-      .catch(function (error) {
-        console.log(error);
+    .then(response => {
+      console.log(response);
+      // Assign the result to the state
+      this.setState({
+        movies: response.data
       });
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
   }
 
   //go to movie view
@@ -52,6 +52,7 @@ export class MainView extends React.Component {
       selectedMovie: null
     });
   }
+
   onLoggedIn(user) {
     this.setState({
       user
@@ -96,7 +97,7 @@ export class MainView extends React.Component {
           }
         </Row>
       </Container>
-    );
-  }
+    );// return
+  } // render
 
 }
