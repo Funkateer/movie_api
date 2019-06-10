@@ -47,7 +47,7 @@ export class MainView extends React.Component {
     });
   }
 
-  ResetMainView() {
+  resetMainView() {
     this.setState({
       selectedMovie: null
     });
@@ -59,13 +59,13 @@ export class MainView extends React.Component {
     });
   }
 
-  RegisterUser() {
-    this.setState({
-      newUser: true
-    });
-  }
+  // registerUser() {
+  //   this.setState({
+  //     newUser: true
+  //   });
+  // }
 
-  UserRegistered() {
+  userRegistered() {
     this.setState({
       newUser: null
     });
@@ -74,12 +74,14 @@ export class MainView extends React.Component {
   render() {
     // If the state isn't initialized, this will throw on runtime
     // before the data is initially loaded
-    const { movies, selectedMovie,user, newUser } = this.state;
+    const { movies, selectedMovie, user, newUser } = this.state;
 
-    if (!user) {
-      if (newUser) return <RegistrationView UserRegistered={() => this.UserRegistered()} OnLoggedIn={user => this.OnLoggedIn(user)} />;
-      else return <LoginView OnLoggedIn={user => this.OnLoggedIn(user)} NewUser={() => this.RegisterUser()} UserRegistered={() => this.UserRegistered()} />;
-    }
+    // if (!user) {
+    //   if (newUser) return <RegistrationView userRegistered={() => this.userRegistered()} OnLoggedIn={user => this.OnLoggedIn(user)} />;
+    //   else return <LoginView OnLoggedIn={user => this.OnLoggedIn(user)} NewUser={() => this.RegisterUser()} userRegistered={() => this.userRegistered()} />;
+    // }
+
+    if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
 
     // Before the movies have been loaded
     if (!movies) return <div className="main-view"/>;
@@ -88,10 +90,10 @@ export class MainView extends React.Component {
       <Container className='main-view' fluid='true'>
         <Row>
           {selectedMovie
-            ? <Col><MovieView returnCallback={() => this.ResetMainView()} movie={selectedMovie} /></Col>
+            ? <Col><MovieView returnCallback={() => this.resetMainView()} movie={selectedMovie} /></Col>
             : movies.map(movie => {
               return (
-                <Col xl={3} sm={6} md={4} xs={12}><MovieCard key={movie._id} movie={movie} onClick={movie => this.OnMovieClick(movie)} /></Col>
+                <Col xl={3} sm={6} md={4} xs={12}><MovieCard key={movie._id} movie={movie} onClick={movie => this.onMovieClick(movie)} /></Col>
               )
             })
           }
@@ -99,5 +101,4 @@ export class MainView extends React.Component {
       </Container>
     );// return
   } // render
-
 }

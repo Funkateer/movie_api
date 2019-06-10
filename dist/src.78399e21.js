@@ -30461,8 +30461,8 @@ function (_React$Component) {
       });
     }
   }, {
-    key: "ResetMainView",
-    value: function ResetMainView() {
+    key: "resetMainView",
+    value: function resetMainView() {
       this.setState({
         selectedMovie: null
       });
@@ -30473,17 +30473,15 @@ function (_React$Component) {
       this.setState({
         user: user
       });
-    }
+    } // registerUser() {
+    //   this.setState({
+    //     newUser: true
+    //   });
+    // }
+
   }, {
-    key: "RegisterUser",
-    value: function RegisterUser() {
-      this.setState({
-        newUser: true
-      });
-    }
-  }, {
-    key: "UserRegistered",
-    value: function UserRegistered() {
+    key: "userRegistered",
+    value: function userRegistered() {
       this.setState({
         newUser: null
       });
@@ -30499,29 +30497,16 @@ function (_React$Component) {
           movies = _this$state.movies,
           selectedMovie = _this$state.selectedMovie,
           user = _this$state.user,
-          newUser = _this$state.newUser;
+          newUser = _this$state.newUser; // if (!user) {
+      //   if (newUser) return <RegistrationView userRegistered={() => this.userRegistered()} OnLoggedIn={user => this.OnLoggedIn(user)} />;
+      //   else return <LoginView OnLoggedIn={user => this.OnLoggedIn(user)} NewUser={() => this.RegisterUser()} userRegistered={() => this.userRegistered()} />;
+      // }
 
-      if (!user) {
-        if (newUser) return _react.default.createElement(_registrationView.RegistrationView, {
-          UserRegistered: function UserRegistered() {
-            return _this3.UserRegistered();
-          },
-          OnLoggedIn: function OnLoggedIn(user) {
-            return _this3.OnLoggedIn(user);
-          }
-        });else return _react.default.createElement(_loginView.LoginView, {
-          OnLoggedIn: function OnLoggedIn(user) {
-            return _this3.OnLoggedIn(user);
-          },
-          NewUser: function NewUser() {
-            return _this3.RegisterUser();
-          },
-          UserRegistered: function UserRegistered() {
-            return _this3.UserRegistered();
-          }
-        });
-      } // Before the movies have been loaded
-
+      if (!user) return _react.default.createElement(_loginView.LoginView, {
+        onLoggedIn: function onLoggedIn(user) {
+          return _this3.onLoggedIn(user);
+        }
+      }); // Before the movies have been loaded
 
       if (!movies) return _react.default.createElement("div", {
         className: "main-view"
@@ -30531,7 +30516,7 @@ function (_React$Component) {
         fluid: "true"
       }, _react.default.createElement(_Row.default, null, selectedMovie ? _react.default.createElement(_Col.default, null, _react.default.createElement(_movieView.MovieView, {
         returnCallback: function returnCallback() {
-          return _this3.ResetMainView();
+          return _this3.resetMainView();
         },
         movie: selectedMovie
       })) : movies.map(function (movie) {
@@ -30544,7 +30529,7 @@ function (_React$Component) {
           key: movie._id,
           movie: movie,
           onClick: function onClick(movie) {
-            return _this3.OnMovieClick(movie);
+            return _this3.onMovieClick(movie);
           }
         }));
       }))); // return
@@ -30646,7 +30631,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53977" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51131" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
