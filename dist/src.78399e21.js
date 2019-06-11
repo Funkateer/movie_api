@@ -29791,7 +29791,7 @@ function LoginView(props) {
     },
     variant: "link",
     onClick: function onClick() {
-      return props.NewUser();
+      return props.newUser();
     }
   }, " here "), " to register"))));
 }
@@ -29800,7 +29800,7 @@ LoginView.propTypes = {
   username: _propTypes.default.string.isRequired,
   password: _propTypes.default.string.isRequired,
   onClick: _propTypes.default.func.isRequired,
-  NewUser: _propTypes.default.func.isRequired,
+  newUser: _propTypes.default.func.isRequired,
   OnLoggedIn: _propTypes.default.func.isRequired
 };
 },{"react":"../../node_modules/react/index.js","prop-types":"../../node_modules/prop-types/index.js","react-bootstrap/Form":"../../node_modules/react-bootstrap/Form.js","react-bootstrap/Button":"../../node_modules/react-bootstrap/Button.js","react-bootstrap/Container":"../../node_modules/react-bootstrap/Container.js","./login-view.scss":"components/login-view/login-view.scss"}],"../../node_modules/react-bootstrap/utils/divWithClassName.js":[function(require,module,exports) {
@@ -30233,10 +30233,10 @@ function RegistrationView(props) {
       birthday = _useState8[0],
       setBirthday = _useState8[1];
 
-  var SuccessfulRegistration = function SuccessfulRegistration(e) {
+  var successfulRegistration = function successfulRegistration(e) {
     e.preventDefault();
-    props.UserRegistered();
-    props.OnLoggedIn(username);
+    props.userRegistered();
+    props.onLoggedIn(username);
   };
 
   return _react.default.createElement(_Container.default, {
@@ -30283,7 +30283,7 @@ function RegistrationView(props) {
     }
   })), _react.default.createElement(_Button.default, {
     variant: "primary",
-    onClick: SuccessfulRegistration
+    onClick: successfulRegistration
   }, "Register"), _react.default.createElement(_Form.default.Group, {
     controlId: "formNewUser"
   }, _react.default.createElement(_Form.default.Text, null, "Already registered? Click ", _react.default.createElement(_Button.default, {
@@ -30292,7 +30292,7 @@ function RegistrationView(props) {
     },
     variant: "link",
     onClick: function onClick() {
-      return props.UserRegistered();
+      return props.userRegistered();
     }
   }, " here "), " to login")))); // return
 }
@@ -30303,8 +30303,8 @@ RegistrationView.propTypes = {
   email: _propTypes.default.string.isRequired,
   birthday: _propTypes.default.string.isRequired,
   onClick: _propTypes.default.func.isRequired,
-  UserRegistered: _propTypes.default.func.isRequired,
-  OnLoggedIn: _propTypes.default.func.isRequired
+  userRegistered: _propTypes.default.func.isRequired,
+  onLoggedIn: _propTypes.default.func.isRequired
 };
 },{"react":"../../node_modules/react/index.js","prop-types":"../../node_modules/prop-types/index.js","react-bootstrap/Form":"../../node_modules/react-bootstrap/Form.js","react-bootstrap/Button":"../../node_modules/react-bootstrap/Button.js","react-bootstrap/Container":"../../node_modules/react-bootstrap/Container.js","./registration-view.scss":"components/registration-view/registration-view.scss"}],"../../node_modules/react-bootstrap/Row.js":[function(require,module,exports) {
 "use strict";
@@ -30473,12 +30473,14 @@ function (_React$Component) {
       this.setState({
         user: user
       });
-    } // registerUser() {
-    //   this.setState({
-    //     newUser: true
-    //   });
-    // }
-
+    }
+  }, {
+    key: "registerUser",
+    value: function registerUser() {
+      this.setState({
+        newUser: true
+      });
+    }
   }, {
     key: "userRegistered",
     value: function userRegistered() {
@@ -30497,10 +30499,28 @@ function (_React$Component) {
           movies = _this$state.movies,
           selectedMovie = _this$state.selectedMovie,
           user = _this$state.user,
-          newUser = _this$state.newUser; // if (!user) {
-      //   if (newUser) return <RegistrationView userRegistered={() => this.userRegistered()} OnLoggedIn={user => this.OnLoggedIn(user)} />;
-      //   else return <LoginView OnLoggedIn={user => this.OnLoggedIn(user)} NewUser={() => this.RegisterUser()} userRegistered={() => this.userRegistered()} />;
-      // }
+          newUser = _this$state.newUser;
+
+      if (!user) {
+        if (newUser) return _react.default.createElement(_registrationView.RegistrationView, {
+          userRegistered: function userRegistered() {
+            return _this3.userRegistered();
+          },
+          onLoggedIn: function onLoggedIn(user) {
+            return _this3.onLoggedIn(user);
+          }
+        });else return _react.default.createElement(_loginView.LoginView, {
+          onLoggedIn: function onLoggedIn(user) {
+            return _this3.onLoggedIn(user);
+          },
+          newUser: function newUser() {
+            return _this3.registerUser();
+          },
+          userRegistered: function userRegistered() {
+            return _this3.userRegistered();
+          }
+        });
+      }
 
       if (!user) return _react.default.createElement(_loginView.LoginView, {
         onLoggedIn: function onLoggedIn(user) {
@@ -30578,31 +30598,31 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
 // Main component
-var CinetecaApplication =
+var cinetecaApplication =
 /*#__PURE__*/
 function (_React$Component) {
-  _inherits(CinetecaApplication, _React$Component);
+  _inherits(cinetecaApplication, _React$Component);
 
-  function CinetecaApplication() {
-    _classCallCheck(this, CinetecaApplication);
+  function cinetecaApplication() {
+    _classCallCheck(this, cinetecaApplication);
 
-    return _possibleConstructorReturn(this, _getPrototypeOf(CinetecaApplication).apply(this, arguments));
+    return _possibleConstructorReturn(this, _getPrototypeOf(cinetecaApplication).apply(this, arguments));
   }
 
-  _createClass(CinetecaApplication, [{
+  _createClass(cinetecaApplication, [{
     key: "render",
     value: function render() {
       return _react.default.createElement(_mainView.MainView, null);
     }
   }]);
 
-  return CinetecaApplication;
+  return cinetecaApplication;
 }(_react.default.Component); // Finds the root of your app
 
 
 var container = document.getElementsByClassName('app-container')[0]; // Tells React to render your app in the root DOM element
 
-_reactDom.default.render(_react.default.createElement(CinetecaApplication), container);
+_reactDom.default.render(_react.default.createElement(cinetecaApplication), container);
 },{"react":"../../node_modules/react/index.js","react-dom":"../../node_modules/react-dom/index.js","./components/main-view/main-view":"components/main-view/main-view.jsx","./index.scss":"index.scss"}],"../../../../../../../usr/local/lib/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -30631,7 +30651,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51131" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61630" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
