@@ -8,6 +8,7 @@ import { RegistrationView } from '../registration-view/registration-view';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Button from 'react-bootstrap/Button';
 import './main-view.scss';
 
 export class MainView extends React.Component {
@@ -38,21 +39,31 @@ export class MainView extends React.Component {
     .catch(function (error) {
       console.log(error);
     });
+
+    let accessToken = localStorage.getItem('token');
+    if (accessToken !== null) {
+      this.setState({
+        user: localStorage.getItem('user')
+      });
+      this.getMovies(accessToken);
+    }
   }
 
-  //go to movie view
-  onMovieClick(movie) {
+
+  // register new user
+  registerUser() {
     this.setState({
-      selectedMovie: movie
+      newUser: true
     });
   }
 
-  resetMainView() {
+  userRegistered() {
     this.setState({
-      selectedMovie: null
+      newUser: null
     });
   }
 
+  //log in
   onLoggedIn(authData) {
     console.log(authData)
     this.setState({
@@ -63,6 +74,7 @@ export class MainView extends React.Component {
     this.getMovies(authData.token);
   }
 
+  // get list of all movies
   getMovies(token) {
     axios.get('https://cineteca.herokuapp.com/movies', {
       headers: { Authorization: `Bearer ${token}`}
@@ -78,15 +90,31 @@ export class MainView extends React.Component {
     });
   }
 
-  registerUser() {
+  //go to movie view
+  onMovieClick(movie) {
     this.setState({
-      newUser: true
+      selectedMovie: movie
     });
   }
 
-  userRegistered() {
+  //logout function for LogOut button
+  logOut() {
+    //clears storage
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+
+    //resets user state to render again
     this.setState({
-      newUser: null
+      user: null
+    });
+
+    //make sure login screen appears after logging out
+    window.open('/', '_self');
+  }
+
+  resetMainView() {
+    this.setState({
+      selectedMovie: null
     });
   }
 
@@ -117,6 +145,7 @@ export class MainView extends React.Component {
             })
           }
         </Row>
+        <Button onClick={() => this.logOut()}>LogOut</Button>
       </Container>
     );// return
   } // render
