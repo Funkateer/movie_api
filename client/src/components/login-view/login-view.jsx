@@ -47,5 +47,5 @@ LoginView.propTypes = {
   password: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
   newUser: PropTypes.func.isRequired,
-  OnLoggedIn: PropTypes.func.isRequired
+  onLoggedIn: PropTypes.func.isRequired
 }

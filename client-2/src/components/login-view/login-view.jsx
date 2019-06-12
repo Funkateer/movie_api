@@ -41,7 +41,7 @@ export function LoginView(props) {
         </Form.Group>
         <Button variant='primary' onClick={handleSubmit} >Submit</Button>
         <Form.Group controlId='formNewUser'>
-          <Form.Text>New user? Click <Button id='login-view__register' style={{ padding: 0 }} variant='link' onClick={() => props.NewUser()}> here </Button> to register</Form.Text>
+          <Form.Text>New user? Click <Button id='login-view__register' style={{ padding: 0 }} variant='link' onClick={() => props.newUser()}> here </Button> to register</Form.Text>
         </Form.Group>
       </Form>
     </Container>
@@ -52,6 +52,6 @@ LoginView.propTypes = {
   username: PropTypes.string.isRequired,
   password: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
-  NewUser: PropTypes.func.isRequired,
-  OnLoggedIn: PropTypes.func.isRequired
+  newUser: PropTypes.func.isRequired,
+  onLoggedIn: PropTypes.func.isRequired
 }

@@ -11,10 +11,10 @@ export function RegistrationView(props) {
   const [email, setEmail] = useState('');
   const [birthday, setBirthday] = useState('');
 
-  const SuccessfulRegistration = (e) => {
+  const successfulRegistration = (e) => {
     e.preventDefault();
-    props.UserRegistered();
-    props.OnLoggedIn(username);
+    props.userRegistered();
+    props.onLoggedIn(username);
   };
 
   return (
@@ -37,9 +37,9 @@ export function RegistrationView(props) {
           <Form.Label>Birthday</Form.Label>
           <Form.Control size='sm' type='date' placeholder='MM/DD/YYYY' value={birthday} onChange={e => setBirthday(e.target.value)} />
         </Form.Group>
-        <Button variant='primary' onClick={SuccessfulRegistration}>Register</Button>
+        <Button variant='primary' onClick={successfulRegistration}>Register</Button>
         <Form.Group controlId='formNewUser'>
-          <Form.Text>Already registered? Click <Button style={{ padding: 0 }} variant='link' onClick={() => props.UserRegistered()}> here </Button> to login</Form.Text>
+          <Form.Text>Already registered? Click <Button style={{ padding: 0 }} variant='link' onClick={() => props.userRegistered()}> here </Button> to login</Form.Text>
         </Form.Group>
       </Form>
     </Container>
@@ -52,6 +52,6 @@ RegistrationView.propTypes = {
   email: PropTypes.string.isRequired,
   birthday: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
-  UserRegistered: PropTypes.func.isRequired,
-  OnLoggedIn: PropTypes.func.isRequired
+  userRegistered: PropTypes.func.isRequired,
+  onLoggedIn: PropTypes.func.isRequired
 }

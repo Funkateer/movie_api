@@ -59,11 +59,11 @@ export class MainView extends React.Component {
     });
   }
 
-  // registerUser() {
-  //   this.setState({
-  //     newUser: true
-  //   });
-  // }
+  registerUser() {
+    this.setState({
+      newUser: true
+    });
+  }
 
   userRegistered() {
     this.setState({
@@ -76,10 +76,10 @@ export class MainView extends React.Component {
     // before the data is initially loaded
     const { movies, selectedMovie, user, newUser } = this.state;
 
-    // if (!user) {
-    //   if (newUser) return <RegistrationView userRegistered={() => this.userRegistered()} OnLoggedIn={user => this.OnLoggedIn(user)} />;
-    //   else return <LoginView OnLoggedIn={user => this.OnLoggedIn(user)} NewUser={() => this.RegisterUser()} userRegistered={() => this.userRegistered()} />;
-    // }
+    if (!user) {
+      if (newUser) return <RegistrationView userRegistered={() => this.userRegistered()} onLoggedIn={user => this.onLoggedIn(user)} />;
+      else return <LoginView onLoggedIn={user => this.onLoggedIn(user)} newUser={() => this.registerUser()} userRegistered={() => this.userRegistered()} />;
+    }
 
     if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
 
