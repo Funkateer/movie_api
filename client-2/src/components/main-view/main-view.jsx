@@ -64,7 +64,7 @@ export class MainView extends React.Component {
   }
 
   getMovies(token) {
-    axios.get('YOUR_API_URL/movies', {
+    axios.get('https://cineteca.herokuapp.com/movies', {
       headers: { Authorization: `Bearer ${token}`}
     })
     .then(response => {
@@ -77,7 +77,7 @@ export class MainView extends React.Component {
       console.log(error);
     });
   }
-  
+
   registerUser() {
     this.setState({
       newUser: true
