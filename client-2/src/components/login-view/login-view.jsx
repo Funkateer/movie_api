@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
@@ -10,15 +11,20 @@ export function LoginView(props) {
   const [ password, setPassword ] = useState('');
 
   const handleSubmit = (e) => {
-
-    // the two line below are temporay the first prevents the default auth logic to take place (when clicking on submit button),
-    // the second allowas users to log-in even with made up credential it's for testing I'll implement auth in the near future
     e.preventDefault();
-    props.onLoggedIn(username);
-
-    console.log(username, password);
     /* Send a request to the server for authentication */
     /* then call props.onLoggedIn(username) */
+    axios.post('https://cineteca.herokuapp.com/login', {
+      Username: username,
+      Password: password
+    })
+    .then(response => {
+      const data = response.data;
+      props.onLoggedIn(data);
+    })
+    .catch(e => {
+      console.log('no such user')
+    });
   };
 
   return (
