@@ -3,7 +3,6 @@ import axios from 'axios';
 
 import { BrowserRouter as Router, Route} from "react-router-dom";
 
-
 import { LoginView } from '../login-view/login-view';
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
@@ -25,7 +24,7 @@ export class MainView extends React.Component {
     // Initialize the state to an empty object so we can destructure it later
     this.state = {
       movies: null,
-      selectedMovieId: null,
+      // selectedMovie: null,
       user: null
     };
   }
@@ -51,20 +50,6 @@ export class MainView extends React.Component {
       });
       this.getMovies(accessToken);
     }
-
-    // HASH ROUTING
-    this.handleNewHash();
-
-  }
-
-  //HASH routing
-  handleNewHash = () => {
-    const movieId = window.location.hash.replace(/^#\/?|\/$/g, '').split('/');
-
-    this.setState({
-      selectedMovieId: movieId[0]
-    });
-
   }
 
 
@@ -110,9 +95,8 @@ export class MainView extends React.Component {
 
   //go to movie view
   onMovieClick(movie) {
-    window.location.hash = '#' + movie._id;
     this.setState({
-      selectedMovieId: movie._id
+      selectedMovie: movie
     });
   }
 
@@ -138,41 +122,20 @@ export class MainView extends React.Component {
   }
 
   render() {
-    // If the state isn't initialized, this will throw on runtime
-    // before the data is initially loaded
-    const { movies, selectedMovieId, user, newUser } = this.state;
+    const { movies, user } = this.state;
 
-
-    if (!user) {
-      if (newUser) return <RegistrationView userRegistered={() => this.userRegistered()} onLoggedIn={user => this.onLoggedIn(user)} />;
-      else return <LoginView onLoggedIn={user => this.onLoggedIn(user)} newUser={() => this.registerUser()} userRegistered={() => this.userRegistered()} />;
-    }
 
     if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
-
-    // // Before the movies have been loaded
-    // if (!movies || !movies.length) return <div className="main-view"/>;
-
-    // HASH routing
-        // Before the movies have been loaded
-        if (!movies || !movies.length) return <div className="main-view"/>;
-        const selectedMovie = selectedMovieId ? movies.find(m => m._id === selectedMovieId) : null;
-
+    if (!movies) return <div className="main-view"/>;
 
     return (
-      <Container className='main-view' fluid='true'>
-        <Row>
-          {selectedMovie
-            ? <Col><MovieView returnCallback={() => this.resetMainView()} movie={selectedMovie} /></Col>
-            : movies.map(movie => {
-              return (
-                <Col xl={3} sm={6} md={4} xs={12}><MovieCard key={movie._id} movie={movie} onClick={movie => this.onMovieClick(movie)} /></Col>
-              )
-            })
-          }
-        </Row>
-        <Button onClick={() => this.logOut()}>LogOut</Button>
-      </Container>
-    );// return
-  } // render
+      <Router>
+         <div className="main-view">
+          <Route exact path="/" render={() => movies.map(m => <MovieCard key={m._id} movie={m}/>)}/>
+          <Route path="/movies/:movieId" render={({match}) => <MovieView movie={movies.find(m => m._id === match.params.movieId)}/>}/>
+         </div>
+      </Router>
+    );
+  }
+
 }

@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from "react-router-dom";
+
 import { MainView } from '../main-view/main-view';
 import Button from 'react-bootstrap/Button';
 import './movie-view.scss';
@@ -37,6 +39,13 @@ export class MovieView extends React.Component {
         <div className='return-button'>
           <Button variant='primary' onClick={() => this.props.returnCallback()}>Return</Button>
         </div> 
+        <Link to={`/directors/${movie.Director.Name}`}>
+  <Button variant="link">Director</Button>
+</Link>
+
+<Link to={`/genres/${movie.Genre.Name}`}>
+  <Button variant="link">Genre</Button>
+</Link>
       </div> // movie-view
     );// return
   } // render
