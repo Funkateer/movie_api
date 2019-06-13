@@ -15,8 +15,8 @@ export class MainView extends React.Component {
 
   // Call the superclass constructor
   // so React can initialize it
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
 
     // Initialize the state to an empty object so we can destructure it later
     this.state = {
