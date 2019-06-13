@@ -36,7 +36,7 @@ export class MovieView extends React.Component {
         </div>
         <div className='return-button'>
           <Button variant='primary' onClick={() => this.props.returnCallback()}>Return</Button>
-        </div>
+        </div> 
       </div> // movie-view
     );// return
   } // render

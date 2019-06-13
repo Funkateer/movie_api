@@ -1,15 +1,19 @@
 import React from 'react';
 import axios from 'axios';
 
+import { BrowserRouter as Router, Route} from "react-router-dom";
+
+
 import { LoginView } from '../login-view/login-view';
 import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
 import { RegistrationView } from '../registration-view/registration-view';
+
+import './main-view.scss';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
-import './main-view.scss';
 
 export class MainView extends React.Component {
 
@@ -21,7 +25,7 @@ export class MainView extends React.Component {
     // Initialize the state to an empty object so we can destructure it later
     this.state = {
       movies: null,
-      selectedMovie: null,
+      selectedMovieId: null,
       user: null
     };
   }
@@ -47,6 +51,20 @@ export class MainView extends React.Component {
       });
       this.getMovies(accessToken);
     }
+
+    // HASH ROUTING
+    this.handleNewHash();
+
+  }
+
+  //HASH routing
+  handleNewHash = () => {
+    const movieId = window.location.hash.replace(/^#\/?|\/$/g, '').split('/');
+
+    this.setState({
+      selectedMovieId: movieId[0]
+    });
+
   }
 
 
@@ -92,8 +110,9 @@ export class MainView extends React.Component {
 
   //go to movie view
   onMovieClick(movie) {
+    window.location.hash = '#' + movie._id;
     this.setState({
-      selectedMovie: movie
+      selectedMovieId: movie._id
     });
   }
 
@@ -121,7 +140,8 @@ export class MainView extends React.Component {
   render() {
     // If the state isn't initialized, this will throw on runtime
     // before the data is initially loaded
-    const { movies, selectedMovie, user, newUser } = this.state;
+    const { movies, selectedMovieId, user, newUser } = this.state;
+
 
     if (!user) {
       if (newUser) return <RegistrationView userRegistered={() => this.userRegistered()} onLoggedIn={user => this.onLoggedIn(user)} />;
@@ -130,8 +150,14 @@ export class MainView extends React.Component {
 
     if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
 
-    // Before the movies have been loaded
-    if (!movies) return <div className="main-view"/>;
+    // // Before the movies have been loaded
+    // if (!movies || !movies.length) return <div className="main-view"/>;
+
+    // HASH routing
+        // Before the movies have been loaded
+        if (!movies || !movies.length) return <div className="main-view"/>;
+        const selectedMovie = selectedMovieId ? movies.find(m => m._id === selectedMovieId) : null;
+
 
     return (
       <Container className='main-view' fluid='true'>
