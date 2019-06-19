@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+
+import './registration-view.scss';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
-import './registration-view.scss';
+
 
 export function RegistrationView(props) {
   const [username, setUsername] = useState('');
@@ -11,15 +13,15 @@ export function RegistrationView(props) {
   const [email, setEmail] = useState('');
   const [birthday, setBirthday] = useState('');
 
-  const successfulRegistration = (e) => {
+  const SuccessfulRegistration = (e) => {
     e.preventDefault();
     props.userRegistered();
     props.onLoggedIn(username);
-  };
+};
 
   return (
     <Container className='registration-view'>
-      <h1>Register</h1>
+    <h1>Register</h1>
       <Form>
         <Form.Group controlId='formNewUsername'>
           <Form.Label>Username:</Form.Label>
@@ -37,13 +39,13 @@ export function RegistrationView(props) {
           <Form.Label>Birthday</Form.Label>
           <Form.Control size='sm' type='date' placeholder='MM/DD/YYYY' value={birthday} onChange={e => setBirthday(e.target.value)} />
         </Form.Group>
-        <Button variant='primary' onClick={successfulRegistration}>Register</Button>
+        <Button variant='primary' onClick={SuccessfulRegistration}>Register</Button>
         <Form.Group controlId='formNewUser'>
           <Form.Text>Already registered? Click <Button style={{ padding: 0 }} variant='link' onClick={() => props.userRegistered()}> here </Button> to login</Form.Text>
         </Form.Group>
       </Form>
     </Container>
-  ); // return
+  );//return
 }
 
 RegistrationView.propTypes = {

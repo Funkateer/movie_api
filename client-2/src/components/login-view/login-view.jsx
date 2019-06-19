@@ -1,19 +1,17 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import axios from 'axios';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import './login-view.scss';
+import axios from 'axios';
 
 export function LoginView(props) {
-  const [ username, setUsername ] = useState('');
-  const [ password, setPassword ] = useState('');
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    /* Send a request to the server for authentication */
-    /* then call props.onLoggedIn(username) */
     axios.post('https://cineteca.herokuapp.com/login', {
       Username: username,
       Password: password
@@ -22,10 +20,11 @@ export function LoginView(props) {
       const data = response.data;
       props.onLoggedIn(data);
     })
-    .catch(e => {
-      console.log('no such user')
+    .catch(err => {
+      console.error(err, 'No such user.')
     });
   };
+
 
   return (
     <Container className='login-view'>
@@ -45,13 +44,13 @@ export function LoginView(props) {
         </Form.Group>
       </Form>
     </Container>
-  );
+  );//return
 }
 
 LoginView.propTypes = {
   username: PropTypes.string.isRequired,
   password: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
-  newUser: PropTypes.func.isRequired,
+  NewUser: PropTypes.func.isRequired,
   onLoggedIn: PropTypes.func.isRequired
 }
