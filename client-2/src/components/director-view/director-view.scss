@@ -1,0 +1,18 @@
+$primary-color: navy;
+$primary-color-transparent: rgba(17, 17, 182, 0.582);
+$secondary-color: lightgrey;
+$tertiary-color: #1ea896;
+
+.director-view {
+  max-width: 700px;
+  margin: 10px auto;
+  background-color: $primary-color-transparent;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+  color: $secondary-color;
+}
+
+.director-view h1, h2 {
+  color: $tertiary-color;
+}
