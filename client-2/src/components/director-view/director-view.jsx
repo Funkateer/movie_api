@@ -20,9 +20,9 @@ export class DirectorView extends React.Component {
     return (
       <div className="director-view">
         <h1 className="director">{director.Name}</h1>
-        <h2>Biography</h2>
+        <h3>Biography</h3>
         <div className="bio">{director.Bio}</div>
-        <h2>Born</h2>
+        <h3>Born</h3>
         <div className="birth">{director.Birth}</div>
         <Link to={'/'}>
           <Button variant="primary" type="button">

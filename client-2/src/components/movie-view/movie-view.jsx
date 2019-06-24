@@ -28,7 +28,7 @@ export class MovieView extends React.Component {
     })
     .catch(event => {
       console.log('error adding movie to list');
-      alert('Ooooops... Something went wrong!');
+      alert('Oops, Something went wrong!');
     });
   };
 

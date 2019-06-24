@@ -44,7 +44,7 @@ export class ProfileView extends React.Component {
         userData: response.data,
         username: response.data.Username,
         password: response.data.Password,
-        email: response.data.EMail,
+        email: response.data.Email,
         birthday: response.data.Birthday,
         favoriteMovies: response.data.FavoriteMovies
       });
@@ -101,7 +101,7 @@ export class ProfileView extends React.Component {
     axios.put(`https://cineteca.herokuapp.com/users/${localStorage.getItem('user')}`, {
       Username: this.state.usernameForm,
       Password: this.state.passwordForm,
-      EMail: this.state.emailForm,
+      Email: this.state.emailForm,
       Birthday: this.state.birthdayForm
     }, {
       headers: { Authorization: `Bearer ${localStorage.getItem('token')}`}
@@ -135,7 +135,7 @@ export class ProfileView extends React.Component {
   }
 
   render() {
-    const {userData, username, email, birthday, favoriteMovies} = this.state;
+    const {userData, username, Email, birthday, favoriteMovies} = this.state;
 
     if (!userData) return null;
 
@@ -143,20 +143,20 @@ export class ProfileView extends React.Component {
       <div className="profile-view">
         <h1>Your Profile Data</h1>
         <div className="username">
-          <div className="label">Name</div>
+          <div className="label">Name:</div>
           <div className="value">{username}</div>
         </div>
         <div className="password">
-          <div className="label">Password</div>
-          <div className="value">***********</div>
+          <div className="label">Password:</div>
+          <div className="value">******</div>
         </div>
         <div className="birthday">
-          <div className="label">Birthday</div>
+          <div className="label">Birthday:</div>
           <div className="value">{birthday}</div>
         </div>
         <div className="email">
-          <div className="label">EMail</div>
-          <div className="value">{email}</div>
+          <div className="label">Email:</div>
+          <div className="value">{Email}</div>
         </div>
 
         <div className="favoriteMovies">
