@@ -1,6 +1,40 @@
+$primary-color: navy;
+$primary-color-transparent: rgba(17, 17, 182, 0.582);
+$secondary-color: grey;
+$tertiary-color: #1ea896;
+
 .movie-view {
-  background-color: white;
-  padding: 1rem;
-  box-shadow: 0 2px 10px 0 rgba(134,141,155,0.2);
-  margin-top: 1rem;
+  font-family: 'Ubuntu', sans-serif;
+  background-color: $primary-color-transparent;
+  margin: 50px auto;
+  max-width: 700px;
+  padding: 10px;
+  color: $secondary-color;
+  border-radius: 5px;
+  box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+}
+
+.view-btn {
+  width: 100px;
+  margin: 10px 10px;
+}
+
+.btn-primary {
+  background-color: transparent;
+  border-color: $tertiary-color;
+  border-width: 2px;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: $tertiary-color;
+  border-color: $tertiary-color;
+}
+
+.movie-poster {
+  width: 100%;
+}
+
+.label {
+  color: $tertiary-color;
 }

@@ -1,19 +1,36 @@
-body{
-  margin: 40px 0;
-}
+$primary-color: navy;
+$primary-color-transparent: rgba(17, 17, 182, 0.582);
+$secondary-color: grey;
+$tertiary-color: #1ea896;
+
 .main-view {
-  margin-left: auto;
-  margin-right: auto;
-  width: 80%;
+  padding: 5px;
 }
 
-.card {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-  min-height: 34rem;
-  box-shadow: 0 2px 10px 0 rgba(134,141,155,0.2);
+.container {
+  margin-bottom: 50px;
 }
 
-.card:hover {
-  cursor: pointer;
+.navbar {
+  margin-top: 10px;
+  margin-right: 10px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.navbar button {
+  background-color: $primary-color-transparent;
+  border: none;
+  border-radius: 3px;
+  font-family: 'Ubuntu', sans-serif;
+  color: $secondary-color;
+  font-size: 18px;
+  padding: 5px;
+  margin: 0 10px;
+}
+
+.navbar img {
+  width: 16px;
+  margin-left: 5px;
+  padding-bottom: 3px;
 }

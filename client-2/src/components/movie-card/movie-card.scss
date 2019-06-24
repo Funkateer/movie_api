@@ -1,21 +1,47 @@
-$font-size:16px;
-$line-height: 1.3;
-$lines-to-show: 3;
+$primary-color: navy;
+$primary-color-transparent: rgba(17, 17, 182, 0.582);
+$secondary-color: grey;
+$tertiary-color: #1ea896;
 
-.col{
-  padding: 50px 0;
+.card {
+  margin-top: 30px;
+  background-color: $primary-color-transparent;
+  animation: growCard 0.3s ease-in;
+  box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+  border: none;
 }
 
-.card-text {
-  display: block; /* Fallback for non-webkit */
-  display: -webkit-box;
-  max-width: 400px;
-  height: $font-size * $line-height * $lines-to-show; /* Fallback for non-webkit */
-  margin: 0 auto;
-  font-size: $font-size;
-  line-height: $line-height;
-  -webkit-line-clamp: $lines-to-show;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
+@keyframes growCard {
+  from {
+    transform: scale(0);
+  }
+
+  to {
+    transform: scale(1);
+  }
+}
+
+.card-title {
+  color: $tertiary-color;
+}
+
+.btn {
+  width: 150px;
+  margin: 20px 0;
+}
+
+.btn-primary {
+  background-color: transparent;
+  border-color: $tertiary-color;
+  border-width: 2px;
+  color: white;
+}
+
+.btn-primary:active {
+  background-color: white;
+}
+
+.btn-primary:hover {
+  background-color: $tertiary-color;
+  border-color: $tertiary-color;
 }
