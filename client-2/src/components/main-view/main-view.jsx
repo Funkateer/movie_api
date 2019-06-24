@@ -12,7 +12,7 @@ import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
 import { DirectorView } from '../director-view/director-view';
 import { GenreView } from '../genre-view/genre-view';
-// import { ProfileView } from '../profile-view/profile-view';
+import { ProfileView } from '../profile-view/profile-view';
 
 import './main-view.scss';
 
@@ -100,9 +100,9 @@ export class MainView extends React.Component {
         {user &&
           <div className="navbar">
             <Link to={'/profile'}>
-              <button>MyProfile</button>
+              <button>My Profile</button>
             </Link>
-            <button onClick={() => this.logOut()}>LogOut </button>
+            <button onClick={() => this.logOut()}>Logout </button>
           </div>
         }
         <Container>
@@ -132,7 +132,7 @@ export class MainView extends React.Component {
 
         <Route exact path="/register" render={() => <RegistrationView onSignedIn={user => this.onSignedIn(user)} />} />
 
-        {/* <Route exact path="/profile" render={() => <ProfileView />}/> */}
+        <Route exact path="/profile" render={() => <ProfileView />}/>
       </div>
     </Router>
     );

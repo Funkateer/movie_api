@@ -9,6 +9,10 @@ $tertiary-color: #1ea896;
   animation: growCard 0.3s ease-in;
   box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
   border: none;
+  color: $secondary-color;
+}
+.card-text{
+  font-size: 15px
 }
 
 @keyframes growCard {

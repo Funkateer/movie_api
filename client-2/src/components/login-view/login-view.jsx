@@ -33,7 +33,6 @@ export function LoginView(props) {
         <Form.Label >Username</Form.Label>
         <Form.Control type="text" value={username} onChange={e => setUsername(e.target.value)} placeholder="Enter Username" />
         <Form.Text className="text-muted">
-        Type your username here.
         </Form.Text>
       </Form.Group>
 
@@ -45,11 +44,10 @@ export function LoginView(props) {
       <Button variant="primary" type="button" onClick={handleSubmit}>
       LOGIN
       </Button>
-      <p>New user?</p>
+      New user?
       <p>
-        Register
         <Link to={'/register'}>
-          <span> here</span>
+          <span>Register here</span>
         </Link>
       </p>
     </Form>
