@@ -104,16 +104,16 @@ app.get('/directors/:Name',passport.authenticate('jwt', { session: false }), fun
 //////////////////
 
 // For postman testing purposes, returns a list of all users
-app.get('/users', function (req, res) {
-  Users.find()
-  .then(function (users) {
-    res.status(201).json(users)
-  })
-  .catch(function (err) {
-    console.error(err);
-    res.status(500).send('Error: ' + err);
-  })
-});
+// app.get('/users', function (req, res) {
+//   Users.find()
+//   .then(function (users) {
+//     res.status(201).json(users)
+//   })
+//   .catch(function (err) {
+//     console.error(err);
+//     res.status(500).send('Error: ' + err);
+//   })
+// });
 
 // Allow new users to register
 app.post('/users', function (req, res) {
@@ -157,6 +157,18 @@ app.post('/users', function (req, res) {
   });
 });
 
+// get specific user
+app.get('/users/:Username', passport.authenticate('jwt', { session: false }), (req, res) => {
+  Users.findOne({ Username : req.params.Username })
+  .then((user) => {
+    res.status(201).json(user)
+  })
+  .catch((error) => {
+    console.error(error);
+    res.status(500).send('Error: ' + error);
+  });
+});
+
 // Allow users to update their info (Username, Password, Email and Birthday)
 app.put('/users/:Username',passport.authenticate('jwt', { session: false }), function (req, res) {
   // Validation logic here for request
@@ -171,12 +183,15 @@ app.put('/users/:Username',passport.authenticate('jwt', { session: false }), fun
     return res.status(422).json({ errors: errors });
   }
 
+  // hash password of new User
+  let hashedPassword = Users.hashPassword(req.body.Password);
+
   Users.update({
       Username: req.params.Username
     }, {
     $set: {
       Username: req.body.Username,
-      Password: req.body.Password,
+      Password: hashedPassword,
       Email: req.body.Email,
       Birthday: req.body.Birthday
     }
@@ -192,41 +207,6 @@ app.put('/users/:Username',passport.authenticate('jwt', { session: false }), fun
     }
   })
 });
-
-
-// // add a movie to users favoriteMovies list
-// app.put('/users/:username/movies/:movieid', passport.authenticate('jwt', { session: false }), (req, res) => {
-//   Users.findOneAndUpdate({ Username : req.params.username}, { $push : {
-//     FavoriteMovies : req.params.movieid
-//   }},
-//   { new : true},
-//   (error, updatedUser) => {
-//     if (error) {
-//       console.error(error);
-//       res.status(500).send('Error: ' + error);
-//     } else {
-//       res.json(updatedUser)
-//     }
-//   })
-// });
-
-// // delete a movie from users FavoriteMovies list
-// app.delete('/users/:username/movies/:movieid', passport.authenticate('jwt', { session: false }), (req, res) => {
-//   Users.findOneAndUpdate({ Username : req.params.username}, { $pull : {
-//     FavoriteMovies : req.params.movieid
-//   }},
-//   (error, updatedUser) => {
-//     if (error) {
-//       console.error(error);
-//       res.status(500).send('Error: ' + error);
-//     } else {
-//       res.json(updatedUser)
-//     }
-//   })
-// });
-
-
-
 
 // Allow users to add a movie to their list of favorites
 app.post('/users/:Username/FavoriteMovies/:MovieID',passport.authenticate('jwt', { session: false }), function (req, res)  {

@@ -33,37 +33,42 @@ export function RegistrationView(props) {
 
   return (
     <div className="registration-view">
-    <Form>
-      <h2>Sign In</h2>
-      <Form.Group controlId="formBasicUsername">
-        <Form.Label >Your Username</Form.Label>
-        <Form.Control type="text" value={username} onChange={e => setUsername(e.target.value)} placeholder="Enter Username" />
-      </Form.Group>
+      <Form>
+        <h2>Sign In</h2>
+        <Form.Group controlId="formBasicUsername">
+          <Form.Label >Your Username*</Form.Label>
+          <Form.Control type="text" value={username} onChange={e => setUsername(e.target.value)} placeholder="Enter Username" />
+        </Form.Group>
 
-      <Form.Group controlId="formBasicPassword">
-        <Form.Label>Your Password</Form.Label>
-        <Form.Control type="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="Password" />
-      </Form.Group>
+        <Form.Group controlId="formBasicPassword">
+          <Form.Label>Your Password*</Form.Label>
+          <Form.Control type="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="Password" />
+        </Form.Group>
 
-      <Form.Group controlId="formBasicEmail">
-        <Form.Label>Your Email</Form.Label>
-        <Form.Control type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="email" />
-      </Form.Group>
+        <Form.Group controlId="formBasicEmail">
+          <Form.Label>Your Email*</Form.Label>
+          <Form.Control type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="email must have valid format " />
+        </Form.Group>
 
-      <Form.Group controlId="formBasicBirthday">
-        <Form.Label>Your Birthday</Form.Label>
-        <Form.Control type="date" value={birthday} onChange={e => setBirthday(e.target.value)} placeholder="01.01.2000" />
-      </Form.Group>
+        <Form.Group controlId="formBasicBirthday">
+          <Form.Label>Your Birthday*</Form.Label>
+          <Form.Control type="date" value={birthday} onChange={e => setBirthday(e.target.value)} placeholder="dd.mm.yyyy" />
+        </Form.Group>
 
-      <Button variant="primary" type="button" onClick={handleSubmit}>
-      SIGN IN
-      </Button>
+      <Form.Group>
       <p>
-        <Link to={'/'}>
-          <span>Already Member? Login</span>
-        </Link>
+          *All fields are required
       </p>
-    </Form>
-    </div>
+      </Form.Group>
+
+        <Button variant="primary" type="button" onClick={handleSubmit}>
+        SIGN IN
+        </Button>
+
+        <p>
+          <Link to={'/'}><span>Already Member? Login</span></Link>
+        </p>
+      </Form>
+    </div>//registration-view
   );//return
 }

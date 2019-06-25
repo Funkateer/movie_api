@@ -17,12 +17,13 @@ export class ProfileView extends React.Component {
       email: null,
       birthday: null,
       userData: null,
-      FavoriteMovies: null,
+      FavoriteMovies: [],
       usernameForm: null,
       passwordForm: null,
       emailForm: null,
       birthdayForm: null
     };
+
   }
 
   componentDidMount() {
@@ -48,6 +49,7 @@ export class ProfileView extends React.Component {
         birthday: response.data.Birthday,
         FavoriteMovies: response.data.FavoriteMovies
       });
+      console.log("mai" , this.state.email) 
     })
     .catch(function (error) {
       console.log('errors', error);
@@ -76,7 +78,7 @@ export class ProfileView extends React.Component {
   // delete movie from list
   deleteMovie(event, FavoriteMovies) {
     event.preventDefault();
-    axios.delete(`https://cineteca.herokuapp.com/users/${localStorage.getItem('user')}/movies/${FavoriteMovies}`, {
+    axios.delete(`https://cineteca.herokuapp.com/users/${localStorage.getItem('user')}/FavoriteMovies/${FavoriteMovies}`, {
       headers: { Authorization: `Bearer ${localStorage.getItem('token')}`}
     })
     .then(response => {
@@ -132,7 +134,7 @@ export class ProfileView extends React.Component {
   }
 
   render() {
-    const {userData, username, Email, birthday, FavoriteMovies} = this.state;
+    const {userData, username, email, birthday, FavoriteMovies} = this.state;
     if (!userData) return null;
 
     return (
@@ -141,6 +143,7 @@ export class ProfileView extends React.Component {
         <div className="username">
           <div className="label">Name:</div>
           <div className="value">{username}</div>
+          {console.log("username in renders return: ", username)}
         </div>
         <div className="password">
           <div className="label">Password:</div>
@@ -152,16 +155,18 @@ export class ProfileView extends React.Component {
         </div>
         <div className="email">
           <div className="label">Email:</div>
-          <div className="value">{Email}</div>
+          <div className="value">{email}</div>
         </div>
         <div className="FavoriteMovies">
-          <div className="label">Favorite Movies</div>
+          <div className="label">Favorite Movies:</div>
           {FavoriteMovies.length === 0 &&
-            <div className="value">Your Favorite Movie List is empty :-(</div>
+            <div className="value">You don't have any favotite movie?! </div>
           }
           {FavoriteMovies.length > 0 &&
             <div className="value">{FavoriteMovies.map(FavoriteMovies => (<p key={FavoriteMovies}>{JSON.parse(localStorage.getItem('movies')).find(movie => movie._id === FavoriteMovies).Title}<span onClick={(event) => this.deleteMovie(event, FavoriteMovies)}> Delete</span></p>))}</div>
           }
+
+          {console.log("FavoriteMovies in renders return: ", FavoriteMovies)}
         </div>
 
         <Link to={'/'}>
