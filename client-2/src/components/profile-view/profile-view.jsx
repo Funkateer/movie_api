@@ -17,7 +17,7 @@ export class ProfileView extends React.Component {
       email: null,
       birthday: null,
       userData: null,
-      favoriteMovies: null,
+      FavoriteMovies: null,
       usernameForm: null,
       passwordForm: null,
       emailForm: null,
@@ -40,14 +40,13 @@ export class ProfileView extends React.Component {
       headers: { Authorization: `Bearer ${token}`}
     })
     .then(response => {
-      console.log('response data' , response.data)
       this.setState({
         userData: response.data,
         username: response.data.Username,
         password: response.data.Password,
         email: response.data.Email,
         birthday: response.data.Birthday,
-        favoriteMovies: response.data.FavoriteMovies
+        FavoriteMovies: response.data.FavoriteMovies
       });
     })
     .catch(function (error) {
@@ -75,10 +74,9 @@ export class ProfileView extends React.Component {
   }
 
   // delete movie from list
-  deleteMovie(event, favoriteMovie) {
+  deleteMovie(event, FavoriteMovies) {
     event.preventDefault();
-    console.log(favoriteMovie);
-    axios.delete(`https://cineteca.herokuapp.com/users/${localStorage.getItem('user')}/movies/${favoriteMovie}`, {
+    axios.delete(`https://cineteca.herokuapp.com/users/${localStorage.getItem('user')}/movies/${FavoriteMovies}`, {
       headers: { Authorization: `Bearer ${localStorage.getItem('token')}`}
     })
     .then(response => {
@@ -86,7 +84,7 @@ export class ProfileView extends React.Component {
       this.getUser(localStorage.getItem('token'));
     })
     .catch(event => {
-      alert('Oops... something went wrong...');
+      alert('Snap something went wrong while deleting this movie from favorite list');
     });
   }
 
@@ -98,7 +96,6 @@ export class ProfileView extends React.Component {
   //update user data
   handleSubmit(event) {
     event.preventDefault();
-    console.log(this.state.username);
     axios.put(`https://cineteca.herokuapp.com/users/${localStorage.getItem('user')}`, {
       Username: this.state.usernameForm,
       Password: this.state.passwordForm,
@@ -108,7 +105,6 @@ export class ProfileView extends React.Component {
       headers: { Authorization: `Bearer ${localStorage.getItem('token')}`}
     })
     .then(response => {
-      console.log(response);
       alert('Your data has been updated!');
       //update localStorage
       localStorage.setItem('user', this.state.usernameForm);
@@ -119,7 +115,7 @@ export class ProfileView extends React.Component {
     })
     .catch(event => {
       console.log('error updating the userdata');
-      alert('Ooooops... Something went wrong!');
+      alert('Oops... Something went wrong, can\'t update your info!');
     });
   };
 
@@ -136,8 +132,7 @@ export class ProfileView extends React.Component {
   }
 
   render() {
-    const {userData, username, Email, birthday, favoriteMovies} = this.state;
-
+    const {userData, username, Email, birthday, FavoriteMovies} = this.state;
     if (!userData) return null;
 
     return (
@@ -159,14 +154,13 @@ export class ProfileView extends React.Component {
           <div className="label">Email:</div>
           <div className="value">{Email}</div>
         </div>
-        {console.log("favotiremovies" ,   favoriteMovies)}
-        <div className="favoriteMovies">
+        <div className="FavoriteMovies">
           <div className="label">Favorite Movies</div>
-          {favoriteMovies.length === 0 &&
+          {FavoriteMovies.length === 0 &&
             <div className="value">Your Favorite Movie List is empty :-(</div>
           }
-          {favoriteMovies.length > 0 &&
-            <div className="value">{favoriteMovies.map(favoriteMovie => (<p key={favoriteMovie}>{JSON.parse(localStorage.getItem('movies')).find(movie => movie._id === favoriteMovie).Title}<span onClick={(event) => this.deleteMovie(event, favoriteMovie)}> Delete</span></p>))}</div>
+          {FavoriteMovies.length > 0 &&
+            <div className="value">{FavoriteMovies.map(FavoriteMovies => (<p key={FavoriteMovies}>{JSON.parse(localStorage.getItem('movies')).find(movie => movie._id === FavoriteMovies).Title}<span onClick={(event) => this.deleteMovie(event, FavoriteMovies)}> Delete</span></p>))}</div>
           }
         </div>
 
@@ -186,10 +180,7 @@ export class ProfileView extends React.Component {
           <h2>Change Data</h2>
           <Form.Group controlId="formBasicUsername">
             <Form.Label >Your Username</Form.Label>
-            <Form.Control type="text" name="usernameForm" onChange={event => this.handleChange(event)} placeholder="Enter Username" />
-            <Form.Text className="text-muted">
-            Type your username here.
-            </Form.Text>
+            <Form.Control type="text" name="usernameForm" onChange={event => this.handleChange(event)} placeholder="Enter Username" />>
           </Form.Group>
 
           <Form.Group controlId="formBasicPassword">
@@ -199,12 +190,12 @@ export class ProfileView extends React.Component {
 
           <Form.Group controlId="formBasicEmail">
             <Form.Label>Your Email</Form.Label>
-            <Form.Control type="email" name="emailForm" onChange={event => this.handleChange(event)} placeholder="example@ema.il" />
+            <Form.Control type="email" name="emailForm" onChange={event => this.handleChange(event)} placeholder="example@email.com" />
           </Form.Group>
 
           <Form.Group controlId="formBasicBirthday">
             <Form.Label>Your Birthday</Form.Label>
-            <Form.Control type="text" name="birthdayForm" onChange={event => this.handleChange(event)} placeholder="01.01.2000" />
+            <Form.Control type="date" name="birthdayForm" onChange={event => this.handleChange(event)} placeholder="dd.mm.yyyy" />
           </Form.Group>
 
           <Button variant="primary" type="button" onClick={event => this.handleSubmit(event)} >
