@@ -37,6 +37,10 @@ mongoose.connect(process.env.MONGO_DB, {useNewUrlParser: true});
 //   }
 // }));
 
+//////////////////
+//MOVIE ENDPOINTS 
+//////////////////
+
 // Returns a list of ALL movies to the user
 app.get('/movies',passport.authenticate('jwt', { session: false }), function (req, res) {
   Movies.find()
@@ -94,6 +98,10 @@ app.get('/directors/:Name',passport.authenticate('jwt', { session: false }), fun
     res.status(500).send('Error: ' + err);
   });
 });
+
+//////////////////
+//USER ENDPOINTS 
+//////////////////
 
 // For postman testing purposes, returns a list of all users
 app.get('/users', function (req, res) {
@@ -184,6 +192,41 @@ app.put('/users/:Username',passport.authenticate('jwt', { session: false }), fun
     }
   })
 });
+
+
+// // add a movie to users favoriteMovies list
+// app.put('/users/:username/movies/:movieid', passport.authenticate('jwt', { session: false }), (req, res) => {
+//   Users.findOneAndUpdate({ Username : req.params.username}, { $push : {
+//     FavoriteMovies : req.params.movieid
+//   }},
+//   { new : true},
+//   (error, updatedUser) => {
+//     if (error) {
+//       console.error(error);
+//       res.status(500).send('Error: ' + error);
+//     } else {
+//       res.json(updatedUser)
+//     }
+//   })
+// });
+
+// // delete a movie from users favoriteMovies list
+// app.delete('/users/:username/movies/:movieid', passport.authenticate('jwt', { session: false }), (req, res) => {
+//   Users.findOneAndUpdate({ Username : req.params.username}, { $pull : {
+//     FavoriteMovies : req.params.movieid
+//   }},
+//   (error, updatedUser) => {
+//     if (error) {
+//       console.error(error);
+//       res.status(500).send('Error: ' + error);
+//     } else {
+//       res.json(updatedUser)
+//     }
+//   })
+// });
+
+
+
 
 // Allow users to add a movie to their list of favorites
 app.post('/users/:Username/FavoriteMovies/:MovieID',passport.authenticate('jwt', { session: false }), function (req, res)  {

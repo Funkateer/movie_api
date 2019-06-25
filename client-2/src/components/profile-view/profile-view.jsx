@@ -17,7 +17,7 @@ export class ProfileView extends React.Component {
       email: null,
       birthday: null,
       userData: null,
-      favoriteMovies: [],
+      favoriteMovies: null,
       usernameForm: null,
       passwordForm: null,
       emailForm: null,
@@ -40,6 +40,7 @@ export class ProfileView extends React.Component {
       headers: { Authorization: `Bearer ${token}`}
     })
     .then(response => {
+      console.log('response data' , response.data)
       this.setState({
         userData: response.data,
         username: response.data.Username,
@@ -50,7 +51,7 @@ export class ProfileView extends React.Component {
       });
     })
     .catch(function (error) {
-      console.log(error);
+      console.log('errors', error);
     });
   }
 
@@ -158,7 +159,7 @@ export class ProfileView extends React.Component {
           <div className="label">Email:</div>
           <div className="value">{Email}</div>
         </div>
-
+        {console.log("favotiremovies" ,   favoriteMovies)}
         <div className="favoriteMovies">
           <div className="label">Favorite Movies</div>
           {favoriteMovies.length === 0 &&
@@ -211,6 +212,6 @@ export class ProfileView extends React.Component {
           </Button>
         </Form>
       </div>
-    );
-  }
+    );//return
+  }//render
 }

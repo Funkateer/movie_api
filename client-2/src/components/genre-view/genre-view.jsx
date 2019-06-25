@@ -28,8 +28,8 @@ export class GenreView extends React.Component {
           </Button>
         </Link>
       </div>
-    );
-  }
+    );//return
+  }//render
 }
 
 GenreView.propTypes = {

@@ -30,8 +30,8 @@ export class DirectorView extends React.Component {
           </Button>
         </Link>
       </div>
-    );
-  }
+    );//return
+  }//render
 }
 
 DirectorView.propTypes = {

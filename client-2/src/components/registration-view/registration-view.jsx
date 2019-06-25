@@ -65,5 +65,5 @@ export function RegistrationView(props) {
       </p>
     </Form>
     </div>
-  );
+  );//return
 }
