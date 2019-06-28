@@ -1,22 +1,21 @@
 import React from 'react';
 import axios from 'axios';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
+
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+
 import { Link } from 'react-router-dom';
 
-import { setMovies, setLoggedInUser  } from '../../actions/actions';
+import { setMovies, setLoggedInUser } from '../../actions/actions';
+
 import MoviesList from '../movies-list/movies-list';
 import { LoginView } from '../login-view/login-view';
 import { RegistrationView } from '../registration-view/registration-view';
-import { MovieCard } from '../movie-card/movie-card';
-import { MovieView } from '../movie-view/movie-view';
-import { DirectorView } from '../director-view/director-view';
-import { GenreView } from '../genre-view/genre-view';
+import MovieView from '../movie-view/movie-view';
+import DirectorView from '../director-view/director-view';
+import GenreView from '../genre-view/genre-view';
 import { ProfileView } from '../profile-view/profile-view';
 
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
-import Container from 'react-bootstrap/Container';
 import './main-view.scss';
 
 export class MainView extends React.Component {
@@ -70,7 +69,7 @@ export class MainView extends React.Component {
   //logging in
   onLoggedIn(authData) {
     this.setState({
-      user: authData.user.Username,
+      user: authData.user.Username
     });
     this.props.setLoggedInUser(authData.user);
     localStorage.setItem('token', authData.token);
@@ -103,7 +102,7 @@ export class MainView extends React.Component {
 
   render() {
     const { user } = this.state;
-    
+
     return (
       <Router>
         <header>
@@ -113,7 +112,7 @@ export class MainView extends React.Component {
           {user &&
             <div className="navbar">
               <Link to={'/profile'}>
-                <button>My Profile</button>
+                <button>MyProfile</button>
               </Link>
               <button onClick={() => this.logOut()}>Logout</button>
             </div>
@@ -136,8 +135,8 @@ export class MainView extends React.Component {
           <Route exact path="/profile" render={() => <ProfileView />}/>
         </div>
       </Router>
-    );//return
-  }//render
+    );
+  }
 }
 
-export default connect(null, { setMovies,setLoggedInUser } )(MainView);
+export default connect(null, { setMovies, setLoggedInUser } )(MainView);

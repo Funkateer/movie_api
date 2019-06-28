@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { SET_FILTER, SET_SORT_COLUMN, SET_MOVIES } from '../actions/actions';
+import { SET_MOVIES, SET_FILTER, SET_SORT_COLUMN, SET_LOGGEDIN_USER } from '../actions/actions';
 
 function visibilityFilter(state = '', action) {
   switch (action.type) {
@@ -36,14 +36,6 @@ function loggedInUser(state = [], action) {
       return state;
   }
 }
-
-// function moviesApp(state = {}, action) {
-//   return {
-//     visibilityFilter: visibilityFilter(state.visibilityFilter, action),
-//     sortColumn: sortColumn(state.sortColumn, action),
-//     movies: movies(state.movies, action)
-//   }
-// }
 
 const moviesApp = combineReducers({
   visibilityFilter,

@@ -10,8 +10,10 @@
     "react-bootstrap": "^1.0.0-beta.9",
     "react-dom": "^16.8.6",
     "react-redux": "^7.1.0",
-    "react-scripts": "3.0.1",
+    "react-script": "^2.0.5",
+    "react-scripts": "^3.0.1",
     "redux": "^4.0.1",
+    "save": "^2.4.0",
     "yarn": "^1.16.0"
   },
   "scripts": {

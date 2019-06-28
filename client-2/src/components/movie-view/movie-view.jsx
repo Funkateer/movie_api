@@ -65,7 +65,7 @@ function MovieView(props) {
         DIRECTOR
         </Button>
       </Link>
-      <Button className="view-btn" variant="primary" type="button" onClick={event => this.handleSubmit(event)}>
+      <Button className="view-btn" variant="primary" type="button" onClick={event => handleSubmit(event)}>
       LIKE
       </Button>
     </div>
