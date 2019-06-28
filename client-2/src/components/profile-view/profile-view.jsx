@@ -185,7 +185,7 @@ export class ProfileView extends React.Component {
           <h2>Change Data</h2>
           <Form.Group controlId="formBasicUsername">
             <Form.Label >Your Username</Form.Label>
-            <Form.Control type="text" name="usernameForm" onChange={event => this.handleChange(event)} placeholder="Enter Username" />>
+            <Form.Control type="text" name="usernameForm" onChange={event => this.handleChange(event)} placeholder="Enter Username" />
           </Form.Group>
 
           <Form.Group controlId="formBasicPassword">
