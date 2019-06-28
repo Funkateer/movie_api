@@ -1,10 +1,9 @@
 import React from 'react';
 import axios from 'axios';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
-import Container from 'react-bootstrap/Container';
-import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+
+import { setMovies } from '../../actions/actions';
 
 import { LoginView } from '../login-view/login-view';
 import { RegistrationView } from '../registration-view/registration-view';
@@ -13,16 +12,21 @@ import { MovieView } from '../movie-view/movie-view';
 import { DirectorView } from '../director-view/director-view';
 import { GenreView } from '../genre-view/genre-view';
 import { ProfileView } from '../profile-view/profile-view';
+// import MoviesList from '../movies-list/movies-list';
 
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+import Container from 'react-bootstrap/Container';
+import { Link } from 'react-router-dom';
 import './main-view.scss';
 
 export class MainView extends React.Component {
   constructor() {
     super();
     this.state = {
-      movies: [],
-      user: null,
-      profileData: null
+      // movies: [],
+      user: null
+      // profileData: null
     };
   }
 
@@ -37,16 +41,27 @@ export class MainView extends React.Component {
     }
   }
 
+  componentDidMount() {
+    axios.get('https://jsonplaceholder.typicode.com/todos')
+      .then(response => {
+        this.props.setMovies(response.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
+
   //get list of all movies
   getMovies(token) {
     axios.get('https://cineteca.herokuapp.com/movies', {
       headers: { Authorization: `Bearer ${token}`}
     })
     .then(response => {
-      this.setState({
-        movies: response.data
-      });
-      localStorage.setItem('movies', JSON.stringify(this.state.movies));
+      // this.setState({
+      //   movies: response.data
+      // });
+      // localStorage.setItem('movies', JSON.stringify(this.state.movies));
+      this.props.setMovies(response.data)
     })
     .catch(function (error) {
       console.log(error);
@@ -138,3 +153,5 @@ export class MainView extends React.Component {
     );//return
   }//render
 }
+
+export default connect(null, { setMovies } )(MainView);
