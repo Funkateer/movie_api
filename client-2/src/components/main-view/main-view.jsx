@@ -12,7 +12,7 @@ import { MovieView } from '../movie-view/movie-view';
 import { DirectorView } from '../director-view/director-view';
 import { GenreView } from '../genre-view/genre-view';
 import { ProfileView } from '../profile-view/profile-view';
-// import MoviesList from '../movies-list/movies-list';
+import MoviesList from '../movies-list/movies-list';
 
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';

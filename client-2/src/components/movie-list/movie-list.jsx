@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import VisibilityFilterInput from '../visibility-filter-input/visibility-filter-input';
 import { MovieCard } from '../movie-card/movie-card';
 
 const mapStateToProps = state => {
@@ -12,6 +13,10 @@ const mapStateToProps = state => {
     return 0;
   });
 
+  if (visibilityFilter !== '') {
+    moviesToShow = moviesToShow.filter(m => m.title.includes(visibilityFilter));
+  }
+
   return { movies: sortedMovies };
 };
 
@@ -20,7 +25,9 @@ function MoviesList(props) {
 
   if (!movies) return <div className="main-view"/>;
 
-  return movies.map(m => <MovieCard key={m.id} movie={m}/>);
-}
+  return <div className="movies-list">
+    <VisibilityFilterInput/>
+    {movies.map(m => <MovieCard key={m._id} movie={m}/>)}
+  </div>;}
 
 export default connect(mapStateToProps)(MoviesList);
