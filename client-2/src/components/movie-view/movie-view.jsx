@@ -141,3 +141,4 @@ function MovieView(props) {
     </div>
   );//return
 }
+export default connect(({movies}) => ({movies}))(MovieView);
