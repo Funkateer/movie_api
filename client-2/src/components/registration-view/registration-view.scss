@@ -1,19 +1,20 @@
-$primary-color: navy;
-$primary-color-transparent: rgba(17, 17, 182, 0.582);
-$secondary-color: lightgrey;
+$primary-color: #3737f3de;
+$secondary-color: white;
 $tertiary-color: #1ea896;
+$primary-font:'Ubuntu', sans-serif;
+
 
 .registration-view form {
   width: 90%;
   padding: 10px;
   margin: 70px auto;
   border-radius: 5px;
-  background-color: $primary-color-transparent;
-  color: white;
+  background-color: $primary-color;
+  color: $secondary-color;
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-family: 'Ubuntu', sans-serif;
+  font-family: $primary-font;
   box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
   position: relative;
   animation: formSlideIn .5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -21,7 +22,7 @@ $tertiary-color: #1ea896;
 }
 
 form h2 {
-  color: white;
+  color: $secondary-color;
 }
 
 .form-group {
@@ -38,7 +39,7 @@ form h2 {
   background-color: transparent;
   border-color: $tertiary-color;
   border-width: 2px;
-  color: white;
+  color: $secondary-color;
 }
 
 .btn-primary:hover {

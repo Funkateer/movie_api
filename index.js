@@ -54,7 +54,7 @@ app.get('/movies',passport.authenticate('jwt', { session: false }), function (re
 });
 
 // Returns data about a single movie by title to the user
-app.get('/movies/:title',passport.authenticate('jwt', { session: false }), function (req, res) {
+app.get('/movies/:Title',passport.authenticate('jwt', { session: false }), function (req, res) {
   Movies.findOne({
       Title: req.params.Title
     })

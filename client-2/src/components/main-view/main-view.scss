@@ -1,14 +1,19 @@
-$primary-color: navy;
-$primary-color-transparent: rgba(17, 17, 182, 0.582);
-$secondary-color: lightgrey;
+$primary-color: #3737f3de;
+$secondary-color: white;
 $tertiary-color: #1ea896;
+$primary-font:'Ubuntu', sans-serif;
+
 
 .main-view {
   padding: 5px;
 }
 
-.container {
-  margin-bottom: 50px;
+.appName{
+  padding-top: 20px;
+  text-align: center;
+  font-family: $primary-font;
+  font-weight: bold;
+  font-size: 5rem;
 }
 
 .navbar {
@@ -19,13 +24,17 @@ $tertiary-color: #1ea896;
 }
 
 .navbar button {
-  background-color: $primary-color-transparent;
+  background-color: $tertiary-color;
   border: none;
   border-radius: 3px;
-  font-family: 'Ubuntu', sans-serif;
+  font-family: $primary-font;
   color: $secondary-color;
   font-size: 15px;
   padding: 6px;
   margin: 0 10px;
+  outline: $tertiary-color;
 }
 
+.container {
+  margin-bottom: 50px;
+}

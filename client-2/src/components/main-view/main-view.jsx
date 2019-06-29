@@ -106,13 +106,13 @@ export class MainView extends React.Component {
     return (
       <Router>
         <header>
-          <h1>Cineteca</h1>
+          <h1 className="appName">Cineteca</h1>
         </header>
         <div className="main-view">
           {user &&
             <div className="navbar">
               <Link to={'/profile'}>
-                <button>MyProfile</button>
+                <button>My Profile</button>
               </Link>
               <button onClick={() => this.logOut()}>Logout</button>
             </div>

@@ -136,7 +136,7 @@ export class ProfileView extends React.Component {
   render() {
     const {userData, username, email, birthday, FavoriteMovies} = this.state;
     if (!userData) return null;
-
+    let date = new Date(birthday);
     return (
       <div className="profile-view">
         <h1>Your Profile Data</h1>
@@ -151,7 +151,7 @@ export class ProfileView extends React.Component {
         </div>
         <div className="birthday">
           <div className="label">Birthday:</div>
-          <div className="value">{birthday}</div>
+          <div className="value">{date.toLocaleDateString()}</div>
         </div>
         <div className="email">
           <div className="label">Email:</div>
@@ -160,10 +160,10 @@ export class ProfileView extends React.Component {
         <div className="FavoriteMovies">
           <div className="label">Favorite Movies:</div>
           {FavoriteMovies.length === 0 &&
-            <div className="value">You don't have any favotite movie?! </div>
+            <div className="value">You don't have any favotite movie! </div>
           }
           {FavoriteMovies.length > 0 &&
-            <div className="value">{FavoriteMovies.map(FavoriteMovies => (<p key={FavoriteMovies}>{JSON.parse(localStorage.getItem('movies')).find(movie => movie._id === FavoriteMovies).Title}<span onClick={(event) => this.deleteMovie(event, FavoriteMovies)}> Delete</span></p>))}</div>
+            <div className="value">{FavoriteMovies.map(FavoriteMovies => (<p key={FavoriteMovies}>{JSON.parse(localStorage.getItem('movies')).find(movie => movie._id === FavoriteMovies).Title}<span onClick={(event) => this.deleteMovie(event, FavoriteMovies)}> [Remove]</span></p>))}</div>
           }
 
           {console.log("FavoriteMovies in renders return: ", FavoriteMovies)}

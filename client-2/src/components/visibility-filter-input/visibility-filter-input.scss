@@ -1,14 +1,14 @@
-$primary-color: navy;
-$primary-color-transparent: rgba(17, 17, 182, 0.582);
-$secondary-color: lightgrey;
+$primary-color: #3737f3de;
+$secondary-color: white;
 $tertiary-color: #1ea896;
+$primary-font:'Ubuntu', sans-serif;
 
 
 .visibilityFilterForm {
   margin: 10px auto;
   width: 300px;
   background-color: transparent;
-  border: 2px solid $tertiary-color;
+  border: 2px solid $primary-color;
 }
 
 .visibilityFilterForm:focus {
@@ -16,27 +16,27 @@ $tertiary-color: #1ea896;
   outline-offset: none;
   box-shadow: none;
   color: black;
-  border: 2px solid $tertiary-color;
+  border: 2px solid $primary-color;
   box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
 }
 
 .visibilityFilterForm::placeholder {
-  color: $secondary-color;
+  color: #919eaa;
 }
 
 .selectFilter {
   margin: 10px auto;
   width: 300px;
-  background-color: $tertiary-color;
-  border: 2px solid $tertiary-color;
+  background-color: $primary-color;
+  border: 2px solid $primary-color;
   color: $secondary-color;
 }
 
 .selectFilter:focus {
-  background-color: $tertiary-color;
+  background-color: $primary-color;
   outline-offset: none;
   box-shadow: none;
-  color: black;
-  border: 2px solid $tertiary-color;
+  color: $secondary-color;
+  border: 2px solid $primary-color;
   box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
 }
