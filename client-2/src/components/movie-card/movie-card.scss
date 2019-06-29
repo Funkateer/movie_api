@@ -1,13 +1,11 @@
-$primary-color: #3737f3de;
+$primary-color: #5C6BC0;
 $secondary-color: white;
 $tertiary-color: #1ea896;
 $primary-font:'Ubuntu', sans-serif;
 
-
 .card {
   margin-top: 30px;
   background-color: $primary-color;
-  animation: growCard 0.3s ease-in;
   box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
   border: none;
   color: $secondary-color;
@@ -20,16 +18,6 @@ $primary-font:'Ubuntu', sans-serif;
   overflow: hidden;
   max-height: 3.6em;
   line-height: 1.2em;
-}
-
-@keyframes growCard {
-  from {
-    transform: scale(0);
-  }
-
-  to {
-    transform: scale(1);
-  }
 }
 
 .card-title {
@@ -55,4 +43,14 @@ $primary-font:'Ubuntu', sans-serif;
 .btn-primary:hover {
   background-color: $tertiary-color;
   border-color: $tertiary-color;
+}
+
+@media only screen and (max-width: 500px) {
+  .card-body {
+    display: none;
+  }
+
+  .card-img-top {
+    border-radius: 3px;
+  }
 }

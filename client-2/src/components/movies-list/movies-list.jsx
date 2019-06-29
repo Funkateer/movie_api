@@ -49,7 +49,7 @@ function MoviesList(props) {
       }
       </Row>
     </Container>
-    </div>;
+  </div>;
 }
 
 export default connect(mapStateToProps)(MoviesList);

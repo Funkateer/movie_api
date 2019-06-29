@@ -68,7 +68,7 @@ function MovieView(props) {
       <Button className="view-btn" variant="primary" type="button" onClick={event => handleSubmit(event)}>
       LIKE
       </Button>
-    </div>
+    </div>//movie-view
   );//return
 }
 export default connect(({movies}) => ({movies}))(MovieView);

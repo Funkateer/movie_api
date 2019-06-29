@@ -135,8 +135,8 @@ export class MainView extends React.Component {
           <Route exact path="/profile" render={() => <ProfileView />}/>
         </div>
       </Router>
-    );
-  }
+    );//return
+  }//render
 }
 
 export default connect(null, { setMovies, setLoggedInUser } )(MainView);

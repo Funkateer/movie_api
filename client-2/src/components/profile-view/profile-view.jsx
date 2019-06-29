@@ -136,7 +136,6 @@ export class ProfileView extends React.Component {
   render() {
     const {userData, username, email, birthday, FavoriteMovies} = this.state;
     if (!userData) return null;
-    let date = new Date(birthday);
     return (
       <div className="profile-view">
         <h1>Your Profile Data</h1>
@@ -151,7 +150,7 @@ export class ProfileView extends React.Component {
         </div>
         <div className="birthday">
           <div className="label">Birthday:</div>
-          <div className="value">{date.toLocaleDateString()}</div>
+          <div className="value">{birthday.substr(-24, 10)}</div>
         </div>
         <div className="email">
           <div className="label">Email:</div>

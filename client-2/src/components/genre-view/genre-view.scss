@@ -1,4 +1,4 @@
-$primary-color: #3737f3de;
+$primary-color: #5C6BC0;
 $secondary-color: white;
 $tertiary-color: #1ea896;
 $primary-font:'Ubuntu', sans-serif;
@@ -12,6 +12,7 @@ $primary-font:'Ubuntu', sans-serif;
   border-radius: 5px;
   box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
   color: $secondary-color;
+  font-family: $primary-font;
 }
 
 .genre-view h1 {
