@@ -12,7 +12,7 @@ function MovieView(props) {
 
   if (!movies || !movies.length) return null;
 
-  const movie = movies.find(m => m._id == movieId);
+  const movie = movies.find(m => m._id === movieId);
 
   function handleSubmit(event) {
     event.preventDefault();
