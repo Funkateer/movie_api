@@ -1,4 +1,4 @@
-//Importing  requored modules
+//Importing  required modules
 const express    = require('express');
 const bodyParser = require('body-parser');
 const uuid       = require('uuid');
@@ -6,6 +6,7 @@ const mongoose   = require('mongoose');
 const passport   = require('passport');
 const cors       = require('cors');
 const validator  = require('express-validator');
+const path = require('path');
 
 
 // importing mongoose schemas
@@ -24,7 +25,7 @@ var auth = require('./auth')(app);
 //connect to mongo DB
 mongoose.connect(process.env.MONGO_DB, {useNewUrlParser: true});
 
-// In case of any CORS restrictins uncomment and add trusted origins
+// In case of any CORS restrictions uncomment and add trusted origins
 // var allowedOrigins = ['http://localhost:8080', 'http://localhost:3000','http://someTrustedURL.com'];
 // app.use(cors({
 //   origin: function(origin, callback){
@@ -38,7 +39,7 @@ mongoose.connect(process.env.MONGO_DB, {useNewUrlParser: true});
 // }));
 
 //////////////////
-//MOVIE ENDPOINTS 
+//MOVIE ENDPOINTS
 //////////////////
 
 // Returns a list of ALL movies to the user
@@ -100,7 +101,7 @@ app.get('/directors/:Name',passport.authenticate('jwt', { session: false }), fun
 });
 
 //////////////////
-//USER ENDPOINTS 
+//USER ENDPOINTS
 //////////////////
 
 // For postman testing purposes, returns a list of all users
@@ -274,14 +275,11 @@ app.get('/documentation', (req, res) => {
   res.sendFile('/public/documentation.html', { root: __dirname })
 });
 
-// '*' every other wrong url prefix
+//Deploy to heroku
+app.use(express.static(path.join(__dirname, 'client-2/build')))
 app.get('*', (req, res) => {
-  res.sendFile('/public/documentation.html', { root: __dirname })
+  res.sendFile(path.join(__dirname + '/client-2/build/index.html'))
 });
-
-// app.listen(8080, () => {
-//   console.log('App listening on port 8080');
-// });
 
 //environment variable port
 var port = process.env.PORT || 3000;
