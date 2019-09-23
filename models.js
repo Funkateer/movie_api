@@ -1,3 +1,6 @@
+/** @const mongoose represents the module 'mongoose'
+* @const bcrypt represents the module 'bcrypis'
+*/
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 

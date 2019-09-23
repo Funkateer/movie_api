@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import './director-view.scss';
 
+/** @function DirectorView */
 function DirectorView(props) {
   const { movies, directorName } = props;
 
