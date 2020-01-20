@@ -8,9 +8,9 @@ A web app that allows to login to their profile, search and displays list of mov
 
 
 ## Features
-Users profile with personal info and watch list
-Like and unlike movies to add them to watch list
-Search fo movies informations by title genre or director
+- Users profile with personal info and watch list
+- Like and unlike movies to add them to watch list
+- Search fo movies informations by title genre or director
 
 
 ## Live Demo
