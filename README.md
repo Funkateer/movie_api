@@ -10,7 +10,7 @@ A web app that allows to login to their profile, search and displays list of mov
 ## Features
 - Users profile with personal info and watch list
 - Like and unlike movies to add them to watch list
-- Search fo movies informations by title genre or director
+- Search fo movies information by title genre or director
 
 
 ## Live Demo
@@ -24,8 +24,7 @@ Node
 ```
 
 ## API Documentation
-
-[Have a look](https://funkateer.github.io/movie_api/public/documentation)
+Read [Documentations](https://funkateer.github.io/movie_api/public/documentation)
 
 
 ## Contribute
@@ -47,7 +46,7 @@ Project Link: https://github.com/Funkateer/movieAPI
 
 
 ## Contact
-Alaeddin Abugrara - [website](http://www.alabugrara.com) - [@twitter](https://twitter.com/twitter_handle) - [Github](https://github.com/Funkateer) - [Linked-in](https://www.linkedin.com/in/al%C3%A0-eddin-abugrara-214ba5115/)
+Alà Eddin Abugrara - [website](http://www.alabugrara.com) - [@twitter](https://twitter.com/twitter_handle) - [Github](https://github.com/Funkateer) - [Linked-in](https://www.linkedin.com/in/al%C3%A0-eddin-abugrara-214ba5115/)
 
 
 <!-- Markdown links & imgs  -->
