@@ -38,7 +38,7 @@ function movies(state = [], action) {
   }
 }
 
-// this is a test reducers 
+// this is a test reducers
 function loggedInUser(state = [], action) {
   switch (action.type) {
     case SET_LOGGEDIN_USER:

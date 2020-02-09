@@ -14,7 +14,7 @@ class App extends Component {
     return (
       <Provider store={store}>
         <MainView/>
-      </Provider>    
+      </Provider>
     );
   }
 }
