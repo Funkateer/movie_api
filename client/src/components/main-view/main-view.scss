@@ -1,16 +1,40 @@
+$primary-color: #5C6BC0;
+$secondary-color: white;
+$tertiary-color: #1ea896;
+$primary-font:'Ubuntu', sans-serif;
+
+
 .main-view {
-  margin-left: auto;
-  margin-right: auto;
-  width: 80%;
+  padding: 5px;
 }
 
-.card {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-  min-height: 34rem;
-  box-shadow: 0 2px 10px 0 rgba(134,141,155,0.2);
+.appName{
+  padding-top: 20px;
+  text-align: center;
+  font-family: $primary-font;
+  font-weight: bold;
+  font-size: 5rem;
 }
 
-.card:hover {
-  cursor: pointer;
+.navbar {
+  margin-top: 10px;
+  margin-right: 10px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.navbar button {
+  background-color: $tertiary-color;
+  border: none;
+  border-radius: 3px;
+  font-family: $primary-font;
+  color: $secondary-color;
+  font-size: 15px;
+  padding: 6px;
+  margin: 0 10px;
+  outline: $tertiary-color;
+}
+
+.container {
+  margin-bottom: 50px;
 }

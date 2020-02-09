@@ -447,9 +447,9 @@ app.get('/documentation', (req, res) => {
 });
 
 //Deploy to heroku
-app.use(express.static(path.join(__dirname, 'client-2/build')))
+app.use(express.static(path.join(__dirname, 'client/build')))
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname + '/client-2/build/index.html'))
+  res.sendFile(path.join(__dirname + '/client/build/index.html'))
 });
 
 //environment variable port
