@@ -9,7 +9,7 @@
     "heroku-postbuild": "cd client && npm install && npm run build"
   },
   "keywords": [],
-  "author": "",
+  "author": "Alaeddin Abugrara",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.19.2",
