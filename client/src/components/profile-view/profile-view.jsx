@@ -59,11 +59,14 @@ export class ProfileView extends React.Component {
   // delete user
   deleteUser(event) {
     event.preventDefault();
-    axios.delete(`https://cineteca.herokuapp.com/users/${localStorage.getItem('user')}`, {
+    // let deleteUser = alert( "confirm delete user?");
+    // if (deleteUser != null){
+      if (window.confirm('Confirm delete user account?')){
+      axios.delete(`https://cineteca.herokuapp.com/users/${localStorage.getItem('user')}`, {
       headers: { Authorization: `Bearer ${localStorage.getItem('token')}`}
     })
     .then(response => {
-      alert('Your Account has been deleted!');
+      alert('We\'re sad to see you go');
       // clears storage
       localStorage.removeItem('token');
       localStorage.removeItem('user');
@@ -73,6 +76,9 @@ export class ProfileView extends React.Component {
     .catch(event => {
       alert('failed to delete user');
     });
+    } else {
+      alert('We\'re happy to see you staying')
+    }
   }
 
   // delete movie from list
@@ -170,7 +176,7 @@ export class ProfileView extends React.Component {
               {FavoriteMovies.map(FavoriteMovies => (
               <p key={FavoriteMovies}>
                 {JSON.parse(localStorage.getItem('movies')).find(movie => movie._id === FavoriteMovies).Title}
-                <span onClick={(event) => this.deleteMovie(event, FavoriteMovies)}> [Remove]</span>
+                <span className='remove-item' onClick={(event) => this.deleteMovie(event, FavoriteMovies)}> [Remove]</span>
               </p>))}
             </div>
           }
@@ -183,10 +189,6 @@ export class ProfileView extends React.Component {
           </Button>
         </Link>
 
-        <Button className="view-btn" variant="primary" type="button" onClick={(event) => this.deleteUser(event)}>
-          DELETE
-        </Button>
-
         <Button id="toggleButton" className="view-btn" variant="primary" type="button" onClick={() => this.toggleForm()}>
           CHANGE DATA &darr;
         </Button>
@@ -195,7 +197,7 @@ export class ProfileView extends React.Component {
           <h2>Change Data</h2>
           <Form.Group controlId="formBasicUsername">
             <Form.Label >Your Username:</Form.Label>
-            <Form.Control type="text" name="usernameForm" onChange={event => this.handleChange(event)} placeholder="Enter Username" />
+            <Form.Control type="text" name="usernameForm" onChange={event => this.handleChange(event)} placeholder="Username" />
           </Form.Group>
 
           <Form.Group controlId="formBasicPassword">
@@ -214,7 +216,11 @@ export class ProfileView extends React.Component {
           </Form.Group>
 
           <Button variant="primary" type="button" onClick={event => this.handleSubmit(event)} >
-            CHANGE!
+            CHANGE
+          </Button>
+
+          <Button className="view-btn remove-user" variant="primary" type="button" onClick={(event) => this.deleteUser(event)}>
+            DELETE PROFILE
           </Button>
         </Form>
       </div>
