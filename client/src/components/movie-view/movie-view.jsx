@@ -53,6 +53,7 @@ function MovieView(props) {
         <div className="label"> Director </div>
         <div className="value">{movie.Director.Name}</div>
       </div>
+      <br/>
 
       <Link to={'/'}>
         <Button className="view-btn" variant="primary" type="button">

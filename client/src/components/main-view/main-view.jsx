@@ -106,9 +106,6 @@ export class MainView extends React.Component {
     return (
       <Router>
         <header>
-          <h1 className="appName">Cineteca</h1>
-        </header>
-        <div className="main-view">
           {user &&
             <div className="navbar">
               <Link to={'/profile'}>
@@ -117,7 +114,9 @@ export class MainView extends React.Component {
               <button onClick={() => this.logOut()}>Logout</button>
             </div>
           }
-
+        <Link className="appName" to={`/`}>Cineteca</Link>
+        </header>
+        <div className="main-view">
           <Route exact path="/" render={() => {
             if (!user) return <LoginView onLoggedIn={user => this.onLoggedIn(user)} />;
             return <MoviesList />;

@@ -419,7 +419,7 @@ app.delete('/users/:Username',passport.authenticate('jwt', { session: false }), 
   * @param username {string} username - username
   * @example  response:
   *message:
-  *The account with the username: [username] is deleted.'
+  *The account with the username: [username] was deleted.'
   */
 
   Users.findOneAndRemove({
