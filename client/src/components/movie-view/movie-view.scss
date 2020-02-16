@@ -9,7 +9,7 @@ $primary-font:'Ubuntu', sans-serif;
   background-color: $primary-color;
   margin: 50px auto;
   max-width: 700px;
-  padding: 10px;
+  padding: 20px;
   color: $secondary-color;
   border-radius: 5px;
   box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
@@ -33,10 +33,17 @@ $primary-font:'Ubuntu', sans-serif;
   border-color: $tertiary-color;
 }
 
+.movie-title{
+  text-align: center;
+}
+
 .movie-poster {
-  width: 100%;
+  width: 70%;
+  margin: 20px auto;
+  display: block;
 }
 
 .label {
   color: $tertiary-color;
+  font-size: 1.5rem;
 }

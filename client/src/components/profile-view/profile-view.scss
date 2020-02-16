@@ -26,12 +26,17 @@ $primary-font:'Ubuntu', sans-serif;
   border-top: 1px solid $tertiary-color;
 }
 
-span{
+label{
+  margin-top: 30px;
+}
+
+.remove-item{
   color: $tertiary-color;
   font-size: 15px;
 }
 
-span:hover{
+.remove-item:hover,
+.remove-user:hover{
   color: rgb(155, 2, 2);
 }
 
@@ -40,6 +45,8 @@ span:hover{
   position: relative;
   animation: formSlideDown .3s ease-in;
 }
+
+
 
 @keyframes formSlideDown {
   from {

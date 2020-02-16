@@ -4,8 +4,11 @@ $tertiary-color: #1ea896;
 $primary-font:'Ubuntu', sans-serif;
 
 
+form{
+  margin: 20px 0;
+}
 .visibilityFilterForm {
-  margin: 10px auto;
+  margin: 0 auto;
   width: 300px;
   background-color: transparent;
   border: 2px solid $primary-color;
@@ -25,7 +28,7 @@ $primary-font:'Ubuntu', sans-serif;
 }
 
 .selectFilter {
-  margin: 10px auto;
+  margin: 5px auto;
   width: 300px;
   background-color: $primary-color;
   border: 2px solid $primary-color;
