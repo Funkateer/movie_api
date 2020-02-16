@@ -12,7 +12,7 @@ $primary-font:'Ubuntu', sans-serif;
 }
 .card-text{
   font-size: 15px;
-  display: block; /* or inline-block */
+  display: block;
   text-overflow: ellipsis;
   word-wrap: break-word;
   overflow: hidden;

@@ -5,10 +5,11 @@ A reducer takes a previous state and an action and returns a new state.
 
 import { combineReducers } from 'redux';
 
-//add additional actions UPDATE_PROFILE, DELETE_PROFILE, see end of file
+// add additional actions UPDATE_PROFILE, DELETE_PROFILE, see end of file
 import { SET_MOVIES, SET_FILTER, SET_SORT_COLUMN, SET_LOGGEDIN_USER } from '../actions/actions';
 
-// this reducer changes the visibility property of the state
+// REDUCERS
+// changes the visibility property of the state
 function visibilityFilter(state = '', action) {
   switch (action.type) {
     case SET_FILTER:
@@ -18,7 +19,7 @@ function visibilityFilter(state = '', action) {
   }
 }
 
-// this reducer changes the sorting order of the movies
+// changes the sorting order of the movies
 function sortColumn(state = 'Title', action) {
   switch (action.type) {
     case SET_SORT_COLUMN:
@@ -28,7 +29,7 @@ function sortColumn(state = 'Title', action) {
   }
 }
 
-// this reducer shows the movies
+// shows the movies
 function movies(state = [], action) {
   switch (action.type) {
     case SET_MOVIES:
@@ -38,7 +39,7 @@ function movies(state = [], action) {
   }
 }
 
-// this is a test reducers
+// test reducers
 function loggedInUser(state = [], action) {
   switch (action.type) {
     case SET_LOGGEDIN_USER:

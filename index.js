@@ -10,7 +10,8 @@
 * @requires validator, Express middleware that provide validators sanitizer functions
 * @requires path, part of Node.js core, manages file and folder paths
 */
-//Importing  required modules
+
+// importing required modules
 const express    = require('express');
 const bodyParser = require('body-parser');
 const uuid       = require('uuid');
@@ -37,24 +38,12 @@ app.use(cors());
 app.use(validator());
 var auth = require('./auth')(app);
 
-//connect to mongo DB
+// connect to mongo-DB
 mongoose.connect(process.env.MONGO_DB, {useNewUrlParser: true});
 
-// In case of any CORS restrictions uncomment and add trusted origins
-// var allowedOrigins = ['http://localhost:8080', 'http://localhost:3000','http://someTrustedURL.com'];
-// app.use(cors({
-//   origin: function(origin, callback){
-//     if(!origin) return callback(null, true);
-//     if(allowedOrigins.indexOf(origin) === -1){ // If a specific origin isn’t found on the list of allowed origins
-//       var message = 'The CORS policy for this application doesn’t allow access from origin ' + origin;
-//       return callback(new Error(message ), false);
-//     }
-//     return callback(null, true);
-//   }
-// }));
 
 //////////////////
-//MOVIE ENDPOINTS
+// MOVIE ENDPOINTS
 //////////////////
 /**
 * Returns a list of ALL movies to the user
@@ -85,6 +74,7 @@ app.get('/movies',passport.authenticate('jwt', { session: false }), function (re
   *   {},...
   *]
   */
+
   Movies.find()
   .then(function (movies) {
     res.status(201).json(movies)
@@ -94,36 +84,38 @@ app.get('/movies',passport.authenticate('jwt', { session: false }), function (re
     res.status(500).send('Error: ' + err);
   });
 });
+
 /**
 * Returns data about a single movie by title to the user
 */
 app.get('/movies/:Title',passport.authenticate('jwt', { session: false }), function (req, res) {
   /**
-* @function GET /movies/:title
-* @param title {string} - movie title
-* @example requests:
-* @example response: JSON file with movie data:
-*movie = [
-*   {
-*     "genre": {
-*       "name": " ",
-*       "description": " "
-*     },
-*     "director": {
-*       "name": " ",
-*       "bio": "
-*       "birth": "1970",
-*       "death": ""
-*     },
-*     "_id": "",
-*     "movieId": "",
-*     "title": "",
-*     "description": ".",
-*     "imagePath": "",
-*     "featured":
-*   }
-*]
-*/
+  * @function GET /movies/:title
+  * @param title {string} - movie title
+  * @example requests:
+  * @example response: JSON file with movie data:
+  *movie = [
+  *   {
+  *     "genre": {
+  *       "name": " ",
+  *       "description": " "
+  *     },
+  *     "director": {
+  *       "name": " ",
+  *       "bio": "
+  *       "birth": "1970",
+  *       "death": ""
+  *     },
+  *     "_id": "",
+  *     "movieId": "",
+  *     "title": "",
+  *     "description": ".",
+  *     "imagePath": "",
+  *     "featured":
+  *   }
+  *]
+  */
+
   Movies.findOne({
       Title: req.params.Title
     })
@@ -166,6 +158,7 @@ app.get('/movies/:Title/Genre',passport.authenticate('jwt', { session: false }),
   *   }
   *]
   */
+
   Movies.findOne({
     Title: req.params.Title
   })
@@ -181,6 +174,7 @@ app.get('/movies/:Title/Genre',passport.authenticate('jwt', { session: false }),
     res.status(500).send('Error: ' + err);
   });
 });
+
 /**
 * Returns data about a director bio
 */
@@ -196,6 +190,7 @@ app.get('/directors/:Name',passport.authenticate('jwt', { session: false }), fun
   *   "birth": ,
   * }
   */
+
   Movies.findOne({
     'Director.Name': req.params.Name
   })
@@ -209,7 +204,7 @@ app.get('/directors/:Name',passport.authenticate('jwt', { session: false }), fun
 });
 
 //////////////////
-//USER ENDPOINTS
+// USER ENDPOINTS
 //////////////////
 
 // For postman testing purposes, returns a list of all users
@@ -238,7 +233,8 @@ app.post('/users', function (req, res) {
   *   "birthday": "",
   * }
   */
-  // Validation logic here for request
+
+  // validation logic here for request
   req.checkBody('Username', 'Username is required').notEmpty();
   req.checkBody('Username', 'Username contains non alphanumeric characters - not allowed.').isAlphanumeric()
   req.checkBody('Password', 'Password is required').notEmpty();
@@ -254,7 +250,7 @@ app.post('/users', function (req, res) {
   Users.findOne({Username: req.body.Username})// Search to see if a user with the requested username already exists
   .then(function (user) {
   if (user) {
-    //If the user is found, send a response that it already exists
+    // If the user is found, send a response that it already exists
     return res.status(400).send(req.body.Username + ' already exists');
   } else {
     Users
@@ -305,7 +301,8 @@ app.put('/users/:Username',passport.authenticate('jwt', { session: false }), fun
   *   "birthday": "",
   * }
   */
-  // Validation logic here for request
+
+  // validation logic here for request
   req.checkBody('Username', 'Username is required').notEmpty();
   req.checkBody('Username', 'Username contains non alphanumeric characters - not allowed.').isAlphanumeric()
   req.checkBody('Password', 'Password is required').notEmpty();
@@ -331,7 +328,7 @@ app.put('/users/:Username',passport.authenticate('jwt', { session: false }), fun
     }
   }, {
     new: true
-  }, // This line makes sure that the updated document is returned
+  }, // makes sure that the updated document is returned
   function (err, updatedUser) {
     if (err) {
       console.error(err);
@@ -341,7 +338,6 @@ app.put('/users/:Username',passport.authenticate('jwt', { session: false }), fun
     }
   })
 });
-
 
 /**
 * Allow users to add a movie to their list of favorites
@@ -362,6 +358,7 @@ app.post('/users/:Username/FavoriteMovies/:MovieID',passport.authenticate('jwt',
   *   "__v": 0
   * }
   */
+
   Users.findOneAndUpdate({
     Username: req.params.Username
   }, {
@@ -370,7 +367,7 @@ app.post('/users/:Username/FavoriteMovies/:MovieID',passport.authenticate('jwt',
     }
   }, {
     new: true
-  }, // This line makes sure that the updated document is returned
+  }, // makes sure that the updated document is returned
   function (err, updatedUser) {
     if (err) {
       console.error(err);
@@ -401,7 +398,7 @@ app.delete('/users/:Username/FavoriteMovies/:MovieID',passport.authenticate('jwt
     }
     }, {
       new: true
-    }, // This line makes sure that the updated document is returned
+    }, // makes sure that the updated document is returned
     function (err, updatedUser) {
       if (err) {
         console.error(err);
@@ -441,18 +438,18 @@ app.delete('/users/:Username',passport.authenticate('jwt', { session: false }), 
   });
 });
 
-// Serves documentation file
+// serves documentation file
 app.get('/documentation', (req, res) => {
   res.sendFile('/public/documentation.html', { root: __dirname })
 });
 
-//Deploy to heroku
+// deploy to heroku
 app.use(express.static(path.join(__dirname, 'client/build')))
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname + '/client/build/index.html'))
 });
 
-//environment variable port
+// environment variable port
 var port = process.env.PORT || 3000;
 app.listen(port, '0.0.0.0', () => {
   console.log(`Listening on port ${port}`)

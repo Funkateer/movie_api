@@ -43,16 +43,18 @@ export function LoginView(props) {
       </Form.Group>
 
       <Button variant="primary" type="button" onClick={handleSubmit}>
-      LOGIN
+        LOGIN
       </Button>
+
       New user?
+
       <p>
         <Link to={'/register'}>
           <span>Register here</span>
         </Link>
       </p>
     </Form>
-  );//return
+  );// return
 }
 
 LoginView.propTypes = {

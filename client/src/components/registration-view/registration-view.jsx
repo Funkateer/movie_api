@@ -57,18 +57,18 @@ export function RegistrationView(props) {
 
       <Form.Group>
       <p>
-          *All fields are required
+        *All fields are required
       </p>
       </Form.Group>
 
         <Button variant="primary" type="button" onClick={handleSubmit}>
-        SIGN IN
+          SIGN IN
         </Button>
 
         <p>
           <Link to={'/'}><span>Already Member? Login</span></Link>
         </p>
       </Form>
-    </div>//registration-view
-  );//return
+    </div>// registration-view
+  );// return
 }

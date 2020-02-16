@@ -27,7 +27,7 @@ export class MainView extends React.Component {
   }
 
   componentDidMount() {
-    //authentication
+    // authentication
     let accessToken = localStorage.getItem('token');
     if (accessToken !== null) {
       this.setState({
@@ -38,7 +38,7 @@ export class MainView extends React.Component {
     }
   }
 
-  //get list of all movies
+  // get list of all movies
   getMovies(token) {
     axios.get('https://cineteca.herokuapp.com/movies', {
       headers: { Authorization: `Bearer ${token}`}
@@ -66,7 +66,7 @@ export class MainView extends React.Component {
     });
   }
 
-  //logging in
+  // logging in
   onLoggedIn(authData) {
     this.setState({
       user: authData.user.Username
@@ -77,26 +77,26 @@ export class MainView extends React.Component {
     this.getMovies(authData.token);
   }
 
-  //registrate new user
+  // register new user
   onSignedIn(user) {
     this.setState({
       user: user
     });
   }
 
-  //logut function for LogOut button
+  // logout function for LogOut button
   logOut() {
-    //clears storage
+    // clears storage
     localStorage.removeItem('token');
     localStorage.removeItem('user');
     localStorage.removeItem('movies');
 
-    //resets user state to render again
+    // resets user state to render again
     this.setState({
       user: null
     });
 
-    //make sure login screen appears after logging out
+    // make sure login screen appears after logging out
     window.open('/', '_self');
   }
 
@@ -123,20 +123,15 @@ export class MainView extends React.Component {
             return <MoviesList />;
             }}
           />
-
           <Route exact path="/movies/:id" render={({ match }) => <MovieView movieId={match.params.id}/>}/>
-
           <Route exact path="/genres/:name" render={({ match }) => <GenreView genreName={match.params.name}/>}/>
-
           <Route exact path="/directors/:name" render={({ match }) => <DirectorView directorName={match.params.name}/>}/>
-
           <Route exact path="/register" render={() => <RegistrationView onSignedIn={user => this.onSignedIn(user)} />} />
-
           <Route exact path="/profile" render={() => <ProfileView />}/>
         </div>
       </Router>
-    );//return
-  }//render
+    );// return
+  }// render
 }
 
 export default connect(null, { setMovies, setLoggedInUser } )(MainView);

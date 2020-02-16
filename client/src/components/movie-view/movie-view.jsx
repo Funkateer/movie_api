@@ -34,41 +34,49 @@ function MovieView(props) {
   return(
     <div className="movie-view">
       <div className="movie-title">
-        <div className="label">Title</div>
+        <div className="label"> Title </div>
         <h1>{movie.Title}</h1>
       </div>
+
       <img className="movie-poster" src={movie.ImagePath} alt="movie cover" />
       <div className="movie-description">
-        <div className="label">Description</div>
+        <div className="label"> Description </div>
         <div className="value">{movie.Description}</div>
       </div>
+
       <div className="movie-genre">
         <div className="label">Genre</div>
         <div className="value">{movie.Genre.Name}</div>
       </div>
+
       <div className="movie-director">
-        <div className="label">Director</div>
+        <div className="label"> Director </div>
         <div className="value">{movie.Director.Name}</div>
       </div>
+
       <Link to={'/'}>
         <Button className="view-btn" variant="primary" type="button">
-        BACK
+          BACK
         </Button>
       </Link>
+
       <Link to={`/genres/${movie.Genre.Name}`}>
         <Button className="view-btn" variant="primary" type="button">
-        GENRE
+          GENRE
         </Button>
       </Link>
+
       <Link to={`/directors/${movie.Director.Name}`}>
         <Button className="view-btn" variant="primary" type="button">
-        DIRECTOR
+          DIRECTOR
         </Button>
       </Link>
+
       <Button className="view-btn" variant="primary" type="button" onClick={event => handleSubmit(event)}>
-      LIKE
+        LIKE
       </Button>
-    </div>//movie-view
-  );//return
+    </div>// movie-view
+  );// return
 }
+
 export default connect(({movies}) => ({movies}))(MovieView);

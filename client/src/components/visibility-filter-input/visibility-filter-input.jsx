@@ -10,22 +10,15 @@ import './visibility-filter-input.scss';
 
 function VisibilityFilterInput(props) {
   return <Form>
-  <Form.Control
-    className="visibilityFilterForm"
-    onChange={event => props.setFilter(event.target.value)}
-    value={props.visibilityFilter}
-    placeholder='filter movies'
-  />
-  <Form.Control
-    as="select"
-    className="selectFilter"
-    onChange={event => props.setSortColumn(event.target.value)}
-    value={props.sortColumn}
-  >
-    <option>Title</option>
-    <option>Genre</option>
-    <option>Director</option>
-  </Form.Control>
+    <Form.Control className="visibilityFilterForm" onChange={event => props.setFilter(event.target.value)}
+      value={props.visibilityFilter} placeholder='filter movies'
+    />
+
+    <Form.Control as="select" className="selectFilter" onChange={event => props.setSortColumn(event.target.value)} value={props.sortColumn} >
+      <option>Title</option>
+      <option>Genre</option>
+      <option>Director</option>
+    </Form.Control>
   </Form>
 }
 

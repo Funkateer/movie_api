@@ -7,10 +7,13 @@ the new field of data. An action changes the state by changing the according pro
 
 // initializes the movies list
 export const SET_MOVIES = 'SET_MOVIES';
+
 // sets search filter based on value
 export const SET_FILTER = 'SET_FILTER';
+
 // sets sort filter
 export const SET_SORT_COLUMN = 'SET_SORT_COLUMN';
+
 // sets users profile
 export const SET_LOGGEDIN_USER = 'SET_LOGGEDIN_USER';
 

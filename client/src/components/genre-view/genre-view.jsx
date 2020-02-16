@@ -19,7 +19,7 @@ function GenreView(props) {
       <div className="description">{genre.Description}</div>
       <Link to={'/'}>
         <Button variant="primary" type="button">
-        BACK
+          BACK
         </Button>
       </Link>
     </div>
