@@ -4,7 +4,7 @@ A web app that allows to login to their profile, search and displays list of mov
 
 
 ## Screenshots
-![screenshot](https://alabugrara.com/img/poster-Cineteca.png)
+![screenshot](https://alabugrara.com/img/poster-cineteca.png)
 
 
 ## Features
