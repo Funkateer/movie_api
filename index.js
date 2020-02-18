@@ -43,7 +43,7 @@ mongoose.connect(process.env.MONGO_DB, {useNewUrlParser: true});
 
 
 // In case of any CORS restrictions uncomment and add trusted origins
-var allowedOrigins = ['http://localhost:8080', 'http://localhost:3000'];
+var allowedOrigins = ['http://localhost:8080', 'http://localhost:3000', 'localhost:3000'];
 app.use(cors({
   origin: function(origin, callback){
     if(!origin) return callback(null, true);
