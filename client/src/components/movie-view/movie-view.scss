@@ -7,9 +7,9 @@ $primary-font:'Ubuntu', sans-serif;
 .movie-view {
   font-family: 'Ubuntu', sans-serif;
   background-color: $primary-color;
-  margin: 50px auto;
-  max-width: 700px;
-  padding: 20px;
+  margin: 40px auto;
+  max-width: 900px;
+  padding: 40px 50px;
   color: $secondary-color;
   border-radius: 5px;
   box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
@@ -17,7 +17,7 @@ $primary-font:'Ubuntu', sans-serif;
 
 .view-btn {
   width: 120px;
-  margin: 10px 10px;
+  margin: 10px;
 }
 
 .btn-primary {
@@ -38,7 +38,7 @@ $primary-font:'Ubuntu', sans-serif;
 }
 
 .movie-poster {
-  width: 70%;
+  width: 60%;
   margin: 20px auto;
   display: block;
 }
@@ -46,4 +46,33 @@ $primary-font:'Ubuntu', sans-serif;
 .label {
   color: $tertiary-color;
   font-size: 1.5rem;
+}
+
+
+// MOBILE VIEW
+@media all and (max-width: 720px) {
+  *{
+    font-size: .9rem;
+  }
+  .movie-view {
+    font-family: 'Ubuntu', sans-serif;
+    background-color: $primary-color;
+    margin: 50px auto;
+    padding: 20px ;
+    max-width: 90%;
+
+  }
+
+  .movie-poster {
+    width: 100%;
+    margin: 20px auto;
+    display: block;
+  }
+
+  .view-btn {
+    width: 80px;
+    font-size: .7rem;
+    margin: 5px;
+    padding: 5px;
+  }
 }

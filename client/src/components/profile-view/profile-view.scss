@@ -6,7 +6,7 @@ $primary-font:'Ubuntu', sans-serif;
 
 .profile-view {
   max-width: 700px;
-  margin: 10px auto;
+  margin: 40px auto;
   background-color: $primary-color;
   padding: 20px;
   border-radius: 5px;
@@ -55,5 +55,13 @@ label{
 
   to {
     opacity: 1;
+  }
+}
+
+
+// MOBILE VIEW
+@media all and (max-width: 720px) {
+  .profile-view {
+    max-width: 93%;
   }
 }

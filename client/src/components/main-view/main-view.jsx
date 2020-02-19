@@ -114,7 +114,7 @@ export class MainView extends React.Component {
               <button onClick={() => this.logOut()}>Logout</button>
             </div>
           }
-        <Link className="appName" to={`/`}>Cineteca</Link>
+          <Link className="appName" to={`/`}>Cineteca</Link>
         </header>
         <div className="main-view">
           <Route exact path="/" render={() => {
