@@ -11,7 +11,7 @@
     "react-dom": "^16.8.6",
     "react-redux": "^7.2.0",
     "react-script": "^2.0.5",
-    "react-scripts": "^3.4.0",
+    "react-scripts": "^5.0.1",
     "redux": "^4.0.1",
     "save": "^2.4.0",
     "yarn": "^1.16.0"
